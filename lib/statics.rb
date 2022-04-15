@@ -1,4 +1,4 @@
-require_relative 'manifest'
+require_relative 'manifest/manifest'
 require_relative 'server'
 require_relative 'builder'
 require_relative 'helpers'
