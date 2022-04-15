@@ -6,10 +6,13 @@ require_relative 'colors'
 
 module Statics
   def self.init
-    if ARGV[0] && ARGV[0].downcase == 'server'
+    case ARGV[0]
+    when 'server'
       Statics::Server.new
-    else
+    when 'build'
       Statics::Builder.new
+    else
+      puts "Usage: statics [server|build]"
     end
   end
 end
