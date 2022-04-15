@@ -4,7 +4,7 @@ require 'listen'
 module Statics
   class Server
     def initialize
-      puts "This is server"
+      puts "Starting server..."
 
       app = Rack::Builder.new do
         map "/" do
