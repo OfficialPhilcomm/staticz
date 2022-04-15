@@ -1,22 +1,24 @@
 module Statics
   class Manifest
-    attr_reader :manifest
+    attr_reader :elements
 
     def initialize
-      @manifest = []
+      @elements = []
     end
 
     def sub(name)
-      manifest.push(Statics::Sub.new(name))
+      s = Statics::Sub.new(name)
+      elements.push(s)
+      s
     end
 
     def haml(name)
-      manifest.push(Statics::Haml.new(name))
+      elements.push(Statics::Haml.new(name))
     end
 
     def print
       puts "Manifest:"
-      manifest.each do |e|
+      elements.each do |e|
         e.print
       end
     end
@@ -31,15 +33,24 @@ module Statics
     end
 
     def haml(name)
-      puts "finally"
-      elements.push(Statics::Haml.new(name))
+      elements.push(Statics::Haml.new("#{@name}/#{name}"))
+    end
+
+    def sub(name)
+      s = Statics::Sub.new("#{@name}/#{name}")
+      elements.push(s)
+      yield s
     end
 
     def print
-      puts "Sub: #{name}"
+      puts "Sub: #{path}"
       elements.each do |e|
         e.print
       end
+    end
+
+    def path
+      "src/#{name}"
     end
   end
 
@@ -67,9 +78,9 @@ def haml(name)
 end
 
 def sub(name)
-  @manifest.sub(name)
+  s = @manifest.sub(name)
 
-  yield
+  yield s
 end
 
 require "#{Dir.pwd}/manifest.rb"
