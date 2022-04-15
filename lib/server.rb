@@ -16,7 +16,7 @@ module Statics
       thin_server.app = app
 
       puts "Building..."
-      Statics::Manifest.instance.build
+      Statics::Builder.new
 
       Thread.new { listen_to_file_changes }
       thin_server.start
