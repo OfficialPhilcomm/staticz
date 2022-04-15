@@ -21,6 +21,10 @@ module Statics
       elements.push(Statics::Sass.new("#{@name}/#{name}"))
     end
 
+    def scss(name, &block)
+      elements.push(Statics::Scss.new("#{@name}/#{name}"))
+    end
+
     def build
       Dir.mkdir("build/#{name}") if !Dir.exist?("build/#{name}")
 

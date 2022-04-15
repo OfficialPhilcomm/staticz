@@ -1,6 +1,7 @@
 require_relative 'sub'
 require_relative 'haml'
 require_relative 'sass'
+require_relative 'scss'
 require 'singleton'
 
 module Statics
@@ -25,6 +26,10 @@ module Statics
 
     def sass(name)
       elements.push(Statics::Sass.new(name))
+    end
+
+    def scss(name)
+      elements.push(Statics::Scss.new(name))
     end
 
     def build
@@ -59,4 +64,8 @@ end
 
 def sass(name)
   Statics::Manifest.instance.sass(name)
+end
+
+def scss(name)
+  Statics::Manifest.instance.scss(name)
 end
