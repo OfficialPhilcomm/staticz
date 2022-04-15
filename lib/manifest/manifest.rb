@@ -34,7 +34,7 @@ module Statics
     end
 
     def build
-      require "#{Dir.pwd}/manifest.rb"
+      load "#{Dir.pwd}/manifest.rb"
 
       elements.each do |e|
         e.build
@@ -48,6 +48,7 @@ module Statics
     end
 
     def define(block)
+      elements.clear
       instance_eval(&block)
     end
 
