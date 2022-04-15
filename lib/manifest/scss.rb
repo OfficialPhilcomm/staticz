@@ -12,11 +12,15 @@ module Statics
       "src/#{name}.scss"
     end
 
+    def build_path
+      "build/#{name}.css"
+    end
+
     def build
       if exists?
         engine = ::SassC::Engine.new(File.read(path), syntax: :scss, style: :compressed)
 
-        File.write "build/#{name}.css", engine.render
+        File.write build_path, engine.render
       end
     end
 

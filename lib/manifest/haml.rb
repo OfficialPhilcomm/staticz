@@ -10,11 +10,15 @@ module Statics
       "src/#{name}.haml"
     end
 
+    def build_path
+      "build/#{name}.html"
+    end
+
     def build
       if exists?
         engine = ::Haml::Engine.new(File.read(path))
 
-        File.write "build/#{name}.html", engine.render
+        File.write build_path, engine.render
       end
     end
 
