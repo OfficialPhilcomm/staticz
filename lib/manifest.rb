@@ -1,5 +1,9 @@
+require 'singleton'
+
 module Statics
   class Manifest
+    include Singleton
+
     attr_reader :elements
 
     def initialize
@@ -71,18 +75,16 @@ module Statics
   end
 end
 
-@manifest = Statics::Manifest.new
-
 def haml(name)
-  @manifest.haml(name)
+  Statics::Manifest.instance.haml(name)
 end
 
 def sub(name, &block)
-  s = @manifest.sub(name)
+  s = Statics::Manifest.instance.sub(name)
 
   s.instance_eval(&block)
 end
 
 require "#{Dir.pwd}/manifest.rb"
 
-@manifest.print
+Statics::Manifest.instance.print
