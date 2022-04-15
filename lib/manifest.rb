@@ -14,24 +14,32 @@ module Statics
       manifest.push(Statics::Haml.new(name))
     end
 
-    def to_s
-      manifest.map(&:to_s).join('\n')
+    def print
+      puts "Manifest:"
+      manifest.each do |e|
+        e.print
+      end
     end
   end
 
   class Sub
-    attr_reader :name
+    attr_reader :name, :elements
 
     def initialize(name)
       @name = name
+      @elements = []
     end
 
-    def to_s
-      name
+    def haml(name)
+      puts "finally"
+      elements.push(Statics::Haml.new(name))
     end
 
-    def haml
-      puts "really?"
+    def print
+      puts "Sub: #{name}"
+      elements.each do |e|
+        e.print
+      end
     end
   end
 
@@ -46,8 +54,8 @@ module Statics
       "src/#{name}.haml"
     end
 
-    def to_s
-      "src/#{name}.haml"
+    def print
+      puts "Haml: #{path}"
     end
   end
 end
@@ -60,9 +68,10 @@ end
 
 def sub(name)
   @manifest.sub(name)
+
+  yield
 end
 
 require "#{Dir.pwd}/manifest.rb"
 
-puts "Manifest:"
-puts @manifest
+@manifest.print
