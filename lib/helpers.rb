@@ -1,5 +1,5 @@
 def render(component)
-  engine = ::Haml::Engine.new(File.open("src/#{component}.haml").read)
+  engine = ::Haml::Engine.new(File.read("src/#{component}.haml"))
   engine.render
 end
 
