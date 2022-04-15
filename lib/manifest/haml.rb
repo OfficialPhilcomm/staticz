@@ -13,7 +13,7 @@ module Statics
     def build
       if exists?
         engine = ::Haml::Engine.new(File.read(path))
-  
+
         File.write "build/#{name}.html", engine.render
       end
     end
