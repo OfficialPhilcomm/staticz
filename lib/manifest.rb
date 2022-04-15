@@ -19,7 +19,7 @@ module Statics
     def print
       puts "Manifest:"
       elements.each do |e|
-        e.print
+        e.print(0)
       end
     end
   end
@@ -32,20 +32,20 @@ module Statics
       @elements = []
     end
 
-    def haml(name)
+    def haml(name, &block)
       elements.push(Statics::Haml.new("#{@name}/#{name}"))
     end
 
-    def sub(name)
+    def sub(name, &block)
       s = Statics::Sub.new("#{@name}/#{name}")
       elements.push(s)
-      yield s
+      s.instance_eval(&block)
     end
 
-    def print
-      puts "Sub: #{path}"
+    def print(indentation)
+      puts "#{" " * indentation}↳Sub: #{path}"
       elements.each do |e|
-        e.print
+        e.print(indentation + 1)
       end
     end
 
@@ -65,8 +65,8 @@ module Statics
       "src/#{name}.haml"
     end
 
-    def print
-      puts "Haml: #{path}"
+    def print(indentation)
+      puts "#{" " * indentation}↳Haml: #{path}"
     end
   end
 end
@@ -77,10 +77,10 @@ def haml(name)
   @manifest.haml(name)
 end
 
-def sub(name)
+def sub(name, &block)
   s = @manifest.sub(name)
 
-  yield s
+  s.instance_eval(&block)
 end
 
 require "#{Dir.pwd}/manifest.rb"
