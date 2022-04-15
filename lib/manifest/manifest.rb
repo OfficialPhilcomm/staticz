@@ -1,5 +1,6 @@
 require_relative 'sub'
 require_relative 'haml'
+require_relative 'sass'
 require 'singleton'
 
 module Statics
@@ -22,6 +23,10 @@ module Statics
       elements.push(Statics::Haml.new(name))
     end
 
+    def sass(name)
+      elements.push(Statics::Sass.new(name))
+    end
+
     def build
       require "#{Dir.pwd}/manifest.rb"
 
@@ -42,12 +47,16 @@ module Statics
   end
 end
 
-def haml(name)
-  Statics::Manifest.instance.haml(name)
-end
-
 def sub(name, &block)
   s = Statics::Manifest.instance.sub(name)
 
   s.instance_eval(&block)
+end
+
+def haml(name)
+  Statics::Manifest.instance.haml(name)
+end
+
+def sass(name)
+  Statics::Manifest.instance.sass(name)
 end
