@@ -13,7 +13,7 @@ module Statics
     end
 
     def build
-      engine = ::SassC::Engine.new(File.read(path))
+      engine = ::SassC::Engine.new(File.read(path), syntax: :sass, style: :compressed)
 
       File.write "build/#{name}.css", engine.render
     end
