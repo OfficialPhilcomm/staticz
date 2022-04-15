@@ -15,6 +15,9 @@ module Statics
       thin_server = Thin::Server.new '127.0.0.1', 3000
       thin_server.app = app
 
+      puts "Building..."
+      Statics::Manifest.instance.build
+
       Thread.new { listen_to_file_changes }
       thin_server.start
     end
