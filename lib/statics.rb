@@ -2,6 +2,7 @@ require_relative 'manifest/manifest'
 require_relative 'server'
 require_relative 'builder'
 require_relative 'helpers'
+require_relative 'colors'
 
 module Statics
   def self.init

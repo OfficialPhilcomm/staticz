@@ -34,7 +34,7 @@ module Statics
     end
 
     def print(indentation)
-      puts "#{" " * indentation}↳Sub: #{path}"
+      puts "#{" " * (indentation * 3)}└─ Sub: #{path}"
       elements.each do |e|
         e.print(indentation + 1)
       end

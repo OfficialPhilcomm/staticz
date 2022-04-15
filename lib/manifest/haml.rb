@@ -11,13 +11,27 @@ module Statics
     end
 
     def build
-      engine = ::Haml::Engine.new(File.read(path))
+      if exists?
+        engine = ::Haml::Engine.new(File.read(path))
+  
+        File.write "build/#{name}.html", engine.render
+      end
+    end
 
-      File.write "build/#{name}.html", engine.render
+    def exists?
+      File.exist? path
     end
 
     def print(indentation)
-      puts "#{" " * indentation}↳Haml: #{path}"
+      puts "#{" " * (indentation * 3)}└─ Haml: #{path} #{valid}"
+    end
+
+    def valid
+      if exists?
+        Colors.in_green("✔")
+      else
+        Colors.in_red("✘")
+      end
     end
   end
 end
