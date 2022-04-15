@@ -23,7 +23,15 @@ module Statics
 
     def listen_to_file_changes
       listener = Listen.to('src') do |modified, added, removed|
-        puts(modified: modified, added: added, removed: removed)
+        file_names = modified
+          .map do |file|
+            file.gsub "#{Dir.pwd}/src/", ""
+          end
+          .join(", ")
+
+        puts "#{file_names} changed, rebuilding..."
+        Builder.new
+        puts "Rebuilding successful"
       end
       listener.start
     end
