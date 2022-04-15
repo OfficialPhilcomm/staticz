@@ -28,8 +28,6 @@ module Statics
     def build
       Dir.mkdir("build/#{name}") if !Dir.exist?("build/#{name}")
 
-      puts "Path #{path} exists: #{Dir.exist?(path)}"
-
       elements.each do |e|
         e.build
       end
