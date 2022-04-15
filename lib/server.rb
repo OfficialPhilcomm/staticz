@@ -26,7 +26,7 @@ module Statics
 
     def listen_to_file_changes
       listener = Listen.to('src') do |modified, added, removed|
-        file_names = modified
+        file_names = (modified + added + removed)
           .map do |file|
             file.gsub "#{Dir.pwd}/src/", ""
           end
