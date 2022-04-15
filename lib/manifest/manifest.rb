@@ -1,8 +1,8 @@
+require 'singleton'
 require_relative 'sub'
 require_relative 'haml'
 require_relative 'sass'
 require_relative 'scss'
-require 'singleton'
 
 module Statics
   class Manifest
