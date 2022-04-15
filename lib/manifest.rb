@@ -20,7 +20,18 @@ module Statics
       elements.push(Statics::Haml.new(name))
     end
 
+    def build
+      require "#{Dir.pwd}/manifest.rb"
+
+      elements.each do |e|
+        e.build
+      end
+
+      print
+    end
+
     def print
+      puts ""
       puts "Manifest:"
       elements.each do |e|
         e.print(0)
@@ -46,6 +57,12 @@ module Statics
       s.instance_eval(&block)
     end
 
+    def build
+      elements.each do |e|
+        e.build
+      end
+    end
+
     def print(indentation)
       puts "#{" " * indentation}↳Sub: #{path}"
       elements.each do |e|
@@ -69,6 +86,12 @@ module Statics
       "src/#{name}.haml"
     end
 
+    def build
+      engine = ::Haml::Engine.new(File.read(path))
+
+      File.write "build/#{name}.html", engine.render
+    end
+
     def print(indentation)
       puts "#{" " * indentation}↳Haml: #{path}"
     end
@@ -84,7 +107,3 @@ def sub(name, &block)
 
   s.instance_eval(&block)
 end
-
-require "#{Dir.pwd}/manifest.rb"
-
-Statics::Manifest.instance.print
