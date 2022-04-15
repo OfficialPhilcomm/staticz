@@ -3,6 +3,11 @@ def render(component)
   engine.render
 end
 
-def link(path, text)
-  ::Haml::Engine.new("%a{href:\"#{path}\"} #{text}").render
+def link(path, text: nil, &block)
+  if block
+    content = capture_haml(&block)
+    "<a href=\"#{path}\">#{content}</a>"
+  else
+    "<a href=\"#{path}\">#{text}</a>"
+  end
 end
