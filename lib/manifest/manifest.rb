@@ -14,10 +14,11 @@ module Statics
       @elements = []
     end
 
-    def sub(name)
+    def sub(name, &block)
       s = Statics::Sub.new(name)
       elements.push(s)
-      s
+
+      s.instance_eval(&block)
     end
 
     def haml(name)
@@ -42,6 +43,14 @@ module Statics
       print
     end
 
+    def self.define(&block)
+      Statics::Manifest.instance.define(block)
+    end
+
+    def define(block)
+      instance_eval(&block)
+    end
+
     def print
       puts ""
       puts "Manifest:"
@@ -50,22 +59,4 @@ module Statics
       end
     end
   end
-end
-
-def sub(name, &block)
-  s = Statics::Manifest.instance.sub(name)
-
-  s.instance_eval(&block)
-end
-
-def haml(name)
-  Statics::Manifest.instance.haml(name)
-end
-
-def sass(name)
-  Statics::Manifest.instance.sass(name)
-end
-
-def scss(name)
-  Statics::Manifest.instance.scss(name)
 end
