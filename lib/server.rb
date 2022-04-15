@@ -1,4 +1,5 @@
 require 'thin'
+require 'listen'
 
 module Statics
   class Server
@@ -21,6 +22,10 @@ module Statics
     private
 
     def listen_to_file_changes
+      listener = Listen.to('src') do |modified, added, removed|
+        puts(modified: modified, added: added, removed: removed)
+      end
+      listener.start
     end
   end
 end
