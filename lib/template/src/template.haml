@@ -13,6 +13,8 @@
     %meta{property: "og:type", content: "website"}
     %meta{property: "og:url", content: "https://example.com/"}
     %meta{property: "og:title", content: "App created with statics"}
+
+    = stylesheet css_main
   %body
     = render :nav
     = capture_haml(&block)

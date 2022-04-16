@@ -16,3 +16,7 @@ def link(path, text: nil, &block)
     "<a href=\"#{path}\">#{text}</a>"
   end
 end
+
+def stylesheet(path)
+  "<link href=\"#{path}\" rel=\"stylesheet\">"
+end
