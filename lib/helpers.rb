@@ -1,6 +1,11 @@
-def render(component)
+def render(component, &block)
   engine = ::Haml::Engine.new(File.read("src/#{component}.haml"))
-  engine.render
+
+  if block
+    engine.render({}, &block)
+  else
+    engine.render
+  end
 end
 
 def link(path, text: nil, &block)
