@@ -34,7 +34,7 @@ module Statics
     end
 
     def print(indentation)
-      puts "#{" " * (indentation * 3)}└─ #{tile_type_name}: #{path} #{valid}"
+      puts "#{" " * (indentation * 3)}└─ #{tile_type_name}: #{path} #{valid} -> #{path_method_name}"
     end
   end
 end
