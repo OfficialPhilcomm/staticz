@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'statics'
-  s.version = '0.0.1'
+  s.version = '1.0.0'
   s.platform = Gem::Platform::RUBY
   s.summary = 'Static website compiler'
   s.description = "Create websites with haml and sass, and compile them into static html and css"
