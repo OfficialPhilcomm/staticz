@@ -4,6 +4,7 @@ require_relative 'sub'
 require_relative 'haml'
 require_relative 'sass'
 require_relative 'scss'
+require_relative 'js'
 
 module Statics
   class Manifest
@@ -32,6 +33,10 @@ module Statics
 
     def scss(name)
       elements.push(Statics::Scss.new(name))
+    end
+
+    def js(name)
+      elements.push(Statics::Js.new(name))
     end
 
     def build

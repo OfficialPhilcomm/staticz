@@ -1,5 +1,5 @@
 # Statics
-Ruby tool allowing you to write a small website project in `haml`, `sass` and `scss`, and compile everything into static files before uploading them to a static server. This project takes a lot of inspiration from Ruby on Rails.
+Ruby tool allowing you to write a small website project in `haml`, `sass`, `scss` and `js`, and compile everything into static files before uploading them to a static server. This project takes a lot of inspiration from Ruby on Rails.
 
 ## Requirements
 [Ruby 3.1.0 or newer](https://www.ruby-lang.org/) (not tested on older versions)
@@ -32,9 +32,13 @@ Statics::Manifest.define do
   sub :css do
     sass :main
   end
+
+  sub :scripts do
+    js :toggle_nav
+  end
 end
 ```
-will build `src/index.haml` and `src/css/main.sass`. You can nest as many subdirectories as you want.
+will build `src/index.haml`, `src/css/main.sass` and `src/scripts/toggle_nav.js`. You can nest as many subdirectories as you want.
 
 #### Helper methods
 There are multiple helper methods to simplify your work.
@@ -57,6 +61,9 @@ If you want to have text on the link, use `= link index_path, text: "foo"`. You 
 = link index_path do
   .bar
 ```
+
+##### Javascripts
+Javascript files work the same way. The helper `= javascript scripts_toggle_path` helps you to link files the same way as [links](#links) and [stylesheets](#stylesheets).
 
 ### Build
 You can build the project with `statics build`. All files included in the manifest will be built and put into the `build` folder. In a CI workflow, you can then take the build files and push them to a static website server.

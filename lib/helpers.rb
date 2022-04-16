@@ -20,3 +20,7 @@ end
 def stylesheet(path)
   "<link href=\"#{path}\" rel=\"stylesheet\">"
 end
+
+def javascript(path)
+  "<script src=\"#{path}\"></script>"
+end
