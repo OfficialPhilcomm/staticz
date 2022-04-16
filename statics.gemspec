@@ -17,4 +17,5 @@ Gem::Specification.new do |s|
   s.add_dependency "thin", ["~> 1.8"]
   s.add_dependency "listen", ["~> 3.7"]
   s.add_dependency "sassc", ["~> 2.4"]
+  s.add_dependency "coffee-script", ["~> 2.4"]
 end
