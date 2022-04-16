@@ -23,6 +23,13 @@ Whenever a file is saved, it will rebuild the files, so with a reload on the pag
 
 To print out the manifest, run `statics manifest`. It will also tell you the resource paths, more about that in [resource paths](#resource-paths)
 
+#### Supported file types
+- `haml` compiles to `html`
+- `sass` compiles to `css`
+- `scss` compiles to `css`
+- `js` doesn't compile, just copies 1:1
+- `coffee` compiles to `js`
+
 #### Manifest
 The manifest defines files that need to be built in order for the website to work. This does not include parts.
 
@@ -37,10 +44,12 @@ Statics::Manifest.define do
 
   sub :scripts do
     js :toggle_nav
+
+    coffee :toggle_nav_but_coffee
   end
 end
 ```
-will build `src/index.haml`, `src/css/main.sass` and `src/scripts/toggle_nav.js`. You can nest as many subdirectories as you want.
+will build `src/index.haml`, `src/css/main.sass`, `src/scripts/toggle_nav.js` and `src/scripts/toggle_nav_but_coffee.coffee`. You can nest as many subdirectories as you want.
 
 #### Helper methods
 There are multiple helper methods to simplify your work.
