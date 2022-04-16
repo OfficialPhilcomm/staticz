@@ -11,6 +11,9 @@ Gem::Specification.new do |s|
   s.files = Dir.glob('{lib,bin}/**/*')
   s.require_path = 'lib'
   s.executables = ['statics']
-  s.add_runtime_dependency "haml",
+
+  s.add_dependency "haml",
     ["~> 5.2"]
+  s.add_dependency "rspec",
+    ["~> 3.11"]
 end
