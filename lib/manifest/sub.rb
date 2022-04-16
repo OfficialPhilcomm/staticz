@@ -33,6 +33,12 @@ module Statics
       end
     end
 
+    def create_link_function
+      elements.each do |e|
+        e.create_link_function
+      end
+    end
+
     def print(indentation)
       puts "#{" " * (indentation * 3)}└─ Sub: #{path}"
       elements.each do |e|

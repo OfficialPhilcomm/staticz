@@ -38,7 +38,7 @@ module Statics
       load "#{Dir.pwd}/manifest.rb"
 
       elements.each do |e|
-        create_link_function(e)
+        e.create_link_function
       end
 
       elements.each do |e|
@@ -46,18 +46,6 @@ module Statics
       end
 
       print
-    end
-
-    def create_link_function(e)
-      if e.is_a? Statics::Sub
-        e.elements.each do |e|
-          create_link_function(e)
-        end
-      else
-        name = e.name.to_s
-        puts "method_name: #{name.gsub(/[\/-]/, "_")}"
-        Object.send(:define_method, name.gsub(/[\/-]/, "_")) { e.build_path }
-      end
     end
 
     def self.define(&block)
