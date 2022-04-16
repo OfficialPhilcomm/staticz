@@ -29,7 +29,6 @@ module Statics
     end
 
     def create_link_function
-      puts "method_name for #{path}: #{path.gsub(/[\/-]/, "_")}"
       link_path = "#{name}.#{build_file_ending}"
       Object.send(:define_method, path_method_name) { link_path }
     end
