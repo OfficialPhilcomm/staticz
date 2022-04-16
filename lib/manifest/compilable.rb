@@ -24,7 +24,7 @@ module Statics
       if exists?
         Colors.in_green("✔")
       else
-        Colors.in_red("✘")
+        Colors.in_red("✘ (file does not exist)")
       end
     end
 
