@@ -16,6 +16,10 @@ module Statics
       File.exist? source_path
     end
 
+    def path_method_name
+      "#{path.gsub(/[\/-]/, "_")}_path"
+    end
+
     def valid
       if exists?
         Colors.in_green("✔")
@@ -27,7 +31,7 @@ module Statics
     def create_link_function
       puts "method_name for #{path}: #{path.gsub(/[\/-]/, "_")}"
       link_path = "#{name}.#{build_file_ending}"
-      Object.send(:define_method, path.gsub(/[\/-]/, "_")) { link_path }
+      Object.send(:define_method, path_method_name) { link_path }
     end
 
     def print(indentation)
