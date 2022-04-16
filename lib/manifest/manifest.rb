@@ -63,7 +63,6 @@ module Statics
     end
 
     def print
-      puts ""
       puts "Manifest:"
       elements.each do |e|
         e.print(0)
