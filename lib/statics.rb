@@ -12,6 +12,7 @@ module Statics
       "",
       "  new [name]",
       "  server",
+      "  manifest",
       "  build"
     ].join("\n")
 
@@ -24,6 +25,9 @@ module Statics
       end
     when 'server'
       Statics::Server.new
+    when 'manifest'
+      load "#{Dir.pwd}/manifest.rb"
+      Statics::Manifest.instance.print
     when 'build'
       Statics::Builder.new
     else

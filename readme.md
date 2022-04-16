@@ -21,6 +21,8 @@ statics server
 ```
 Whenever a file is saved, it will rebuild the files, so with a reload on the page you can immediately see what your changes did.
 
+To print out the manifest, run `statics manifest`.
+
 #### Manifest
 The manifest defines files that need to be built in order for the website to work. This does not include parts.
 
