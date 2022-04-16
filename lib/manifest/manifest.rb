@@ -1,4 +1,5 @@
 require 'singleton'
+require_relative 'compilable'
 require_relative 'sub'
 require_relative 'haml'
 require_relative 'sass'
