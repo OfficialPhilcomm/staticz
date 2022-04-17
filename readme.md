@@ -76,5 +76,59 @@ If you want to have text on the link, use `= link index_path, text: "foo"`. You 
 ##### Javascripts
 Javascript files work the same way. The helper `= javascript scripts_toggle_path` helps you to link files the same way as [links](#links) and [stylesheets](#stylesheets).
 
+#### Experimental: React
+A new experimental feature is React. It is a very basic implementation that does only support very basic components.
+The current restrictions are:
+1. Only `function` components are supported
+2. Behaviors like `useState` need to be prefixed with `React.`, for example `React.useState()`.
+3. `import` statements are not supported. If you wanna use special libraries like `axios` for web requests, it will be more complicated.
+4. Two statements are needed in your `html` file to make a component work. Helpers exist for this
+
+Example:
+`manifest.rb`
+```ruby
+Staticz::Manifest.define do
+  haml :index
+
+  sub :components do
+    react :search
+  end
+end
+```
+
+`src/components/like_button.js`
+```jsx
+function LikeButton(props) {
+  const [liked, setLiked] = React.useState(false);
+
+  return (
+    <React.Fragment>
+      {liked ? (
+        <div>You liked</div>
+      ) : (
+        <button
+          onClick={() => setLiked(true)}
+        >Likey no</button>
+      )}
+    </React.Fragment>
+  );
+}
+```
+
+`src/index.haml`
+```haml
+%html
+  %head
+    -# Include rails js files and generate script src tags for your components (you can pass multiple paths)
+    = react search_path
+
+  %body
+    -# Generate tag into which the component is mounted, first is the js name, second is the css class (optional)
+    = react_component "LikeButton", "like-button"
+
+    -# Mount components (you can pass multiple component names)
+    = react_mount "LikeButton"
+```
+
 ### Build
 You can build the project with `staticz build`. All files included in the manifest will be built and put into the `build` folder. In a CI workflow, you can then take the build files and push them to a static website server.
