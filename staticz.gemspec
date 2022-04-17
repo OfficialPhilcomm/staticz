@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'staticz'
-  s.version = '1.0.1'
+  s.version = '1.0.2'
   s.platform = Gem::Platform::RUBY
   s.required_ruby_version = ">= 3.1.0"
   s.summary = 'Static website compiler'
@@ -15,7 +15,8 @@ Gem::Specification.new do |s|
 
   s.metadata = {
     "documentation_uri" => "https://github.com/OfficialPhilcomm/staticz",
-    "source_code_uri"   => "https://github.com/OfficialPhilcomm/staticz"
+    "source_code_uri"   => "https://github.com/OfficialPhilcomm/staticz",
+    "changelog_uri"     => "https://github.com/OfficialPhilcomm/staticz/blob/master/changelog.md"
   }
 
   s.add_dependency "haml", ["~> 5.2"]

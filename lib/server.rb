@@ -8,6 +8,7 @@ module Staticz
 
       app = Rack::Builder.new do
         map "/" do
+          use Rack::Static, urls: {"/" => "build/index.html"}
           run Rack::Directory.new("build")
         end
       end
