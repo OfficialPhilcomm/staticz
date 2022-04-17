@@ -1,27 +1,27 @@
-# Statics
+# Staticz
 Ruby tool allowing you to write a small website project in `haml`, `sass`, `scss` and `js`, and compile everything into static files before uploading them to a static server. This project takes a lot of inspiration from Ruby on Rails.
 
 ## Requirements
 [Ruby 3.1.0 or newer](https://www.ruby-lang.org/) (not tested on older versions)
 
 ## Installation
-`gem install statics`
+`gem install staticz`
 
 ## Usage
 ### Create new project
 Create a new project by running
 ```
-statics new [name]
+staticz new [name]
 ```
 
 ### Develop website
 To make development as easy as possible, you can run a dev server with
 ```
-statics server
+staticz server
 ```
 Whenever a file is saved, it will rebuild the files, so with a reload on the page you can immediately see what your changes did.
 
-To print out the manifest, run `statics manifest`. It will also tell you the resource paths, more about that in [resource paths](#resource-paths)
+To print out the manifest, run `staticz manifest`. It will also tell you the resource paths, more about that in [resource paths](#resource-paths)
 
 #### Supported file types
 - `haml` compiles to `html`
@@ -35,7 +35,7 @@ The manifest defines files that need to be built in order for the website to wor
 
 For example
 ```ruby
-Statics::Manifest.define do
+Staticz::Manifest.define do
   haml :index
 
   sub :css do
@@ -77,4 +77,4 @@ If you want to have text on the link, use `= link index_path, text: "foo"`. You 
 Javascript files work the same way. The helper `= javascript scripts_toggle_path` helps you to link files the same way as [links](#links) and [stylesheets](#stylesheets).
 
 ### Build
-You can build the project with `statics build`. All files included in the manifest will be built and put into the `build` folder. In a CI workflow, you can then take the build files and push them to a static website server.
+You can build the project with `staticz build`. All files included in the manifest will be built and put into the `build` folder. In a CI workflow, you can then take the build files and push them to a static website server.

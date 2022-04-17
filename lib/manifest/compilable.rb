@@ -1,4 +1,4 @@
-module Statics
+module Staticz
   module Compilable
     def path
       name.to_s

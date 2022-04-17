@@ -1,7 +1,7 @@
 require 'thin'
 require 'listen'
 
-module Statics
+module Staticz
   class Server
     def initialize
       puts "Starting server..."
@@ -16,7 +16,7 @@ module Statics
       thin_server.app = app
 
       puts "Building..."
-      Statics::Builder.new
+      Staticz::Builder.new
 
       Thread.new { listen_to_file_changes }
       thin_server.start

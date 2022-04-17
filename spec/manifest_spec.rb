@@ -4,7 +4,7 @@ RSpec.describe "manifest" do
   context "generate manifest from define" do
     context "big manifest" do
       before do
-        Statics::Manifest.define do
+        Staticz::Manifest.define do
           haml :haml_without_folder
           sass :sass_without_folder
           scss :scss_without_folder
@@ -18,7 +18,7 @@ RSpec.describe "manifest" do
       end
 
       it "generates correct manifest" do
-        expect(Statics::Manifest.instance.elements).to match(
+        expect(Staticz::Manifest.instance.elements).to match(
           [
             have_attributes(name: :haml_without_folder),
             have_attributes(name: :sass_without_folder),
@@ -35,7 +35,7 @@ RSpec.describe "manifest" do
 
     context "small manifest" do
       before do
-        Statics::Manifest.define do
+        Staticz::Manifest.define do
           haml :haml_without_folder
 
           sub :foo do
@@ -46,15 +46,15 @@ RSpec.describe "manifest" do
 
       context "unnested haml" do
         it "has correct paths generated" do
-          expect(Statics::Manifest.instance.elements.first.path).to eq "src/haml_without_folder.haml"
-          expect(Statics::Manifest.instance.elements.first.build_path).to eq "build/haml_without_folder.html"
-          expect(Statics::Manifest.instance.elements.first.link_path).to eq "/haml_without_folder"
+          expect(Staticz::Manifest.instance.elements.first.path).to eq "src/haml_without_folder.haml"
+          expect(Staticz::Manifest.instance.elements.first.build_path).to eq "build/haml_without_folder.html"
+          expect(Staticz::Manifest.instance.elements.first.link_path).to eq "/haml_without_folder"
         end
       end
 
       context "nested haml" do
         let(:haml_object) {
-          Statics::Manifest
+          Staticz::Manifest
             .instance
             .elements[1]
             .elements

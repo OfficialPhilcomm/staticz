@@ -1,4 +1,4 @@
-Statics::Manifest.define do
+Staticz::Manifest.define do
   haml :index
 
   sub :css do

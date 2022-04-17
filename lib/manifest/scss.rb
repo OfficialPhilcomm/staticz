@@ -1,6 +1,6 @@
 require 'sassc'
 
-module Statics
+module Staticz
   class Scss
     include Compilable
 

@@ -1,4 +1,4 @@
-module Statics
+module Staticz
   class Js
     include Compilable
 

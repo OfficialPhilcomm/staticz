@@ -5,10 +5,10 @@ require_relative 'builder'
 require_relative 'helpers'
 require_relative 'colors'
 
-module Statics
+module Staticz
   def self.init
     usage = [
-      "Usage: statics <mode>",
+      "Usage: staticz <mode>",
       "",
       "  new [name]",
       "  server",
@@ -19,17 +19,17 @@ module Statics
     case ARGV[0]
     when 'new'
       if ARGV[1]
-        Statics::Template.new(ARGV[1])
+        Staticz::Template.new(ARGV[1])
       else
         puts usage
       end
     when 'server'
-      Statics::Server.new
+      Staticz::Server.new
     when 'manifest'
       load "#{Dir.pwd}/manifest.rb"
-      Statics::Manifest.instance.print
+      Staticz::Manifest.instance.print
     when 'build'
-      Statics::Builder.new
+      Staticz::Builder.new
     else
       puts usage
     end

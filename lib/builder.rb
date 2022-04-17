@@ -1,6 +1,6 @@
 require "haml"
 
-module Statics
+module Staticz
   class Builder
     def initialize
       build
@@ -11,7 +11,7 @@ module Statics
     def build
       Dir.mkdir('build') unless File.exist?('build')
 
-      Statics::Manifest.instance.build
+      Staticz::Manifest.instance.build
     end
   end
 end

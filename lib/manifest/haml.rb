@@ -1,4 +1,4 @@
-module Statics
+module Staticz
   class Haml
     include Compilable
 

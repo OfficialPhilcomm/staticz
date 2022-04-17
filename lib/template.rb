@@ -1,4 +1,4 @@
-module Statics
+module Staticz
   class Template
     def initialize(name)
       src = File.join(File.dirname(__FILE__), "template")

@@ -7,7 +7,7 @@ require_relative 'scss'
 require_relative 'js'
 require_relative 'cs'
 
-module Statics
+module Staticz
   class Manifest
     include Singleton
 
@@ -18,30 +18,30 @@ module Statics
     end
 
     def sub(name, &block)
-      s = Statics::Sub.new(name)
+      s = Staticz::Sub.new(name)
       elements.push(s)
 
       s.instance_eval(&block)
     end
 
     def haml(name)
-      elements.push(Statics::Haml.new(name))
+      elements.push(Staticz::Haml.new(name))
     end
 
     def sass(name)
-      elements.push(Statics::Sass.new(name))
+      elements.push(Staticz::Sass.new(name))
     end
 
     def scss(name)
-      elements.push(Statics::Scss.new(name))
+      elements.push(Staticz::Scss.new(name))
     end
 
     def js(name)
-      elements.push(Statics::Js.new(name))
+      elements.push(Staticz::Js.new(name))
     end
 
     def coffee(name)
-      elements.push(Statics::Cs.new(name))
+      elements.push(Staticz::Cs.new(name))
     end
 
     def build
@@ -59,7 +59,7 @@ module Statics
     end
 
     def self.define(&block)
-      Statics::Manifest.instance.define(block)
+      Staticz::Manifest.instance.define(block)
     end
 
     def define(block)

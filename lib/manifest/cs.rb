@@ -1,6 +1,6 @@
 require 'coffee-script'
 
-module Statics
+module Staticz
   class Cs
     include Compilable
 
