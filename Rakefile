@@ -1,5 +1,5 @@
 GEM_NAME = "staticz"
-GEM_VERSION = "1.0.0"
+GEM_VERSION = "1.0.1"
 
 task :default => :build
 
