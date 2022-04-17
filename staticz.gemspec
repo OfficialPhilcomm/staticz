@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'staticz'
-  s.version = '1.0.2'
+  s.version = '1.0.3'
   s.platform = Gem::Platform::RUBY
   s.required_ruby_version = ">= 3.1.0"
   s.summary = 'Static website compiler'
@@ -25,4 +25,5 @@ Gem::Specification.new do |s|
   s.add_dependency "listen", ["~> 3.7"]
   s.add_dependency "sassc", ["~> 2.4"]
   s.add_dependency "coffee-script", ["~> 2.4"]
+  s.add_dependency "babel-transpiler", ["~> 0.7"]
 end

@@ -1,3 +1,6 @@
+# 1.0.3
+Fix missing babel transpiler dependency
+
 # 1.0.2
 Add serving of `index.html` on `/`
 Add basic react functionality (readme contains more info)
