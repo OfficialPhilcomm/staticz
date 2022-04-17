@@ -6,6 +6,7 @@ require_relative 'sass'
 require_relative 'scss'
 require_relative 'js'
 require_relative 'cs'
+require_relative 'react'
 
 module Staticz
   class Manifest
@@ -42,6 +43,10 @@ module Staticz
 
     def coffee(name)
       elements.push(Staticz::Cs.new(name))
+    end
+
+    def react(name)
+      elements.push(Staticz::React.new(name))
     end
 
     def build

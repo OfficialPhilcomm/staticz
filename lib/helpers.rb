@@ -24,3 +24,28 @@ end
 def javascript(path)
   "<script src=\"#{path}\"></script>"
 end
+
+def react(*component_file_paths)
+  lines = [
+    "<script crossorigin src=\"https://unpkg.com/react@18/umd/react.development.js\"></script>",
+    "<script crossorigin src=\"https://unpkg.com/react-dom@18/umd/react-dom.development.js\"></script>",
+    component_file_paths.map do |component_file_path|
+      javascript(component_file_path)
+    end
+  ].flatten.join("\n")
+end
+
+def react_mount(*components)
+  components.map do |component|
+    [
+      "<script>",
+      "document.querySelectorAll('[data-component=\"#{component}\"]')",
+      ".forEach(domContainer => {",
+      "console.log('yas')",
+      "const root = ReactDOM.createRoot(domContainer);",
+      "root.render(React.createElement(#{component}));",
+      "});",
+      "</script>"
+    ]
+  end.flatten.join("\n")
+end

@@ -33,6 +33,10 @@ module Staticz
       elements.push(Staticz::Cs.new("#{@name}/#{name}"))
     end
 
+    def react(name, &block)
+      elements.push(Staticz::React.new("#{@name}/#{name}"))
+    end
+
     def build
       Dir.mkdir("build/#{name}") if !Dir.exist?("build/#{name}")
 
