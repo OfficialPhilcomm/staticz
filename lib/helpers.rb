@@ -49,3 +49,7 @@ def react_mount(*components)
     ]
   end.flatten.join("\n")
 end
+
+def react_component(name, css_class = nil)
+  "<div data-component=\"#{name}\" class=\"#{css_class}\"></div>"
+end
