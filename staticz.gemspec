@@ -2,6 +2,7 @@ Gem::Specification.new do |s|
   s.name = 'staticz'
   s.version = '1.0.0'
   s.platform = Gem::Platform::RUBY
+  s.required_ruby_version = ">= 3.1.0"
   s.summary = 'Static website compiler'
   s.description = "Create websites with haml and sass, and compile them into static html and css"
   s.authors = ['Philipp Schlesinger']
@@ -11,6 +12,11 @@ Gem::Specification.new do |s|
   s.files = Dir.glob('{lib,bin}/**/*')
   s.require_path = 'lib'
   s.executables = ['staticz']
+
+  s.metadata = {
+    "documentation_uri" => "https://github.com/OfficialPhilcomm/staticz",
+    "source_code_uri"   => "https://github.com/OfficialPhilcomm/staticz"
+  }
 
   s.add_dependency "haml", ["~> 5.2"]
   s.add_dependency "rspec", ["~> 3.11"]
