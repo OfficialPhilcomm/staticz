@@ -133,5 +133,17 @@ function LikeButton(props) {
     = react_mount "LikeButton"
 ```
 
+#### Other files
+If you want to include a raw file in your build, add `file "path/to/file"` to your manifest. Example:
+```ruby
+Staticz::Manifest.define do
+  sub :img do
+    file "logo.png"
+  end
+end
+```
+
+Note: This will not create a path for now
+
 ### Build
 You can build the project with `staticz build`. All files included in the manifest will be built and put into the `build` folder. In a CI workflow, you can then take the build files and push them to a static website server.

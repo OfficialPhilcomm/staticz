@@ -7,6 +7,7 @@ require_relative 'scss'
 require_relative 'js'
 require_relative 'cs'
 require_relative 'react'
+require_relative 'simple_file'
 
 module Staticz
   class Manifest
@@ -47,6 +48,10 @@ module Staticz
 
     def react(name)
       elements.push(Staticz::React.new(name))
+    end
+
+    def file(name)
+      elements.push(Staticz::SimpleFile.new(name))
     end
 
     def build

@@ -37,6 +37,10 @@ module Staticz
       elements.push(Staticz::React.new("#{@name}/#{name}"))
     end
 
+    def file(name, &block)
+      elements.push(Staticz::SimpleFile.new("#{@name}/#{name}"))
+    end
+
     def build
       Dir.mkdir("build/#{name}") if !Dir.exist?("build/#{name}")
 
