@@ -54,7 +54,7 @@ will build `src/index.haml`, `src/css/main.sass`, `src/scripts/toggle_nav.js` an
 #### Helper methods
 There are multiple helper methods to simplify your work.
 
-#### Resource paths
+##### Resource paths
 Much like rails, every resource generates a path for you to use. For example `src/styles/main.sass` translates to `styles_main_path`.
 
 ##### Render
@@ -75,6 +75,9 @@ If you want to have text on the link, use `= link index_path, text: "foo"`. You 
 
 ##### Javascripts
 Javascript files work the same way. The helper `= javascript scripts_toggle_path` helps you to link files the same way as [links](#links) and [stylesheets](#stylesheets).
+
+##### Inline svg
+If you wanna print an inline svg, just use `= inline_svg("full_path")`. Full path is for example `img/test.svg`.
 
 #### Experimental: React
 A new experimental feature is React. It is a very basic implementation that does only support very basic components.

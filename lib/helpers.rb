@@ -25,6 +25,10 @@ def javascript(path)
   "<script src=\"#{path}\"></script>"
 end
 
+def inline_svg(source_path)
+  File.read("src/#{source_path}")
+end
+
 def react(*component_file_paths)
   lines = [
     "<script crossorigin src=\"https://unpkg.com/react@18/umd/react.development.js\"></script>",
