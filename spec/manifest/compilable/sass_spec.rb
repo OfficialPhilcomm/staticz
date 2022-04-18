@@ -1,25 +1,25 @@
-require_relative "../../lib/manifest/manifest"
+require_relative "../../../lib/manifest/manifest"
 
-RSpec.describe Staticz::Js do
+RSpec.describe Staticz::Compilable::Sass do
   context "generated from manifest" do
     context "on top level" do
       before do
         Staticz::Manifest.define do
-          js :like
+          sass :styles
         end
       end
 
       it "generates an instance" do
         expect(Staticz::Manifest.instance.elements).to match(
           [
-            have_attributes(name: :like)
+            have_attributes(name: :styles)
           ]
         )
       end
 
       it "generates the correct paths" do
-        expect(Staticz::Manifest.instance.elements.first.source_path).to eq("src/like.js")
-        expect(Staticz::Manifest.instance.elements.first.build_path).to eq("build/like.js")
+        expect(Staticz::Manifest.instance.elements.first.source_path).to eq("src/styles.sass")
+        expect(Staticz::Manifest.instance.elements.first.build_path).to eq("build/styles.css")
       end
 
       context "create link function" do
@@ -28,7 +28,7 @@ RSpec.describe Staticz::Js do
         end
 
         it "generates correct path helper" do
-          expect(like_path).to eq("like.js")
+          expect(styles_path).to eq("styles.css")
         end
       end
     end
@@ -36,8 +36,8 @@ RSpec.describe Staticz::Js do
     context "in subfolder" do
       before do
         Staticz::Manifest.define do
-          sub :components do
-            js :like
+          sub :css do
+            sass :styles
           end
         end
       end
@@ -46,7 +46,7 @@ RSpec.describe Staticz::Js do
         expect(Staticz::Manifest.instance.elements).to match(
           [
             have_attributes(elements: match([
-              have_attributes(name: "components/like")
+              have_attributes(name: "css/styles")
             ]))
           ]
         )
@@ -58,13 +58,13 @@ RSpec.describe Staticz::Js do
           .elements.first
           .elements.first
           .source_path
-        ).to eq("src/components/like.js")
+        ).to eq("src/css/styles.sass")
         expect(Staticz::Manifest
           .instance
           .elements.first
           .elements.first
           .build_path
-        ).to eq("build/components/like.js")
+        ).to eq("build/css/styles.css")
       end
 
       context "create link function" do
@@ -73,7 +73,7 @@ RSpec.describe Staticz::Js do
         end
 
         it "generates correct path helper" do
-          expect(components_like_path).to eq("components/like.js")
+          expect(css_styles_path).to eq("css/styles.css")
         end
       end
     end

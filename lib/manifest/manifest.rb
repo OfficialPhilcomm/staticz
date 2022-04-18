@@ -1,13 +1,12 @@
-require 'singleton'
-require_relative 'compilable'
-require_relative 'sub'
-require_relative 'haml'
-require_relative 'sass'
-require_relative 'scss'
-require_relative 'js'
-require_relative 'cs'
-require_relative 'react'
-require_relative 'simple_file'
+require "singleton"
+require_relative "sub"
+require_relative "compilable/haml"
+require_relative "compilable/cs"
+require_relative "compilable/js"
+require_relative "compilable/react"
+require_relative "compilable/sass"
+require_relative "compilable/scss"
+require_relative "compilable/simple_file"
 
 module Staticz
   class Manifest
@@ -27,31 +26,31 @@ module Staticz
     end
 
     def haml(name)
-      elements.push(Staticz::Haml.new(name))
+      elements.push(Staticz::Compilable::Haml.new(name))
     end
 
     def sass(name)
-      elements.push(Staticz::Sass.new(name))
+      elements.push(Staticz::Compilable::Sass.new(name))
     end
 
     def scss(name)
-      elements.push(Staticz::Scss.new(name))
+      elements.push(Staticz::Compilable::Scss.new(name))
     end
 
     def js(name)
-      elements.push(Staticz::Js.new(name))
+      elements.push(Staticz::Compilable::Js.new(name))
     end
 
     def coffee(name)
-      elements.push(Staticz::Cs.new(name))
+      elements.push(Staticz::Compilable::Cs.new(name))
     end
 
     def react(name)
-      elements.push(Staticz::React.new(name))
+      elements.push(Staticz::Compilable::React.new(name))
     end
 
     def file(name)
-      elements.push(Staticz::SimpleFile.new(name))
+      elements.push(Staticz::Compilable::SimpleFile.new(name))
     end
 
     def build

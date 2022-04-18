@@ -1,11 +1,11 @@
-require_relative "../../lib/manifest/manifest"
+require_relative "../../../lib/manifest/manifest"
 
-RSpec.describe Staticz::Cs do
+RSpec.describe Staticz::Compilable::Js do
   context "generated from manifest" do
     context "on top level" do
       before do
         Staticz::Manifest.define do
-          coffee :like
+          js :like
         end
       end
 
@@ -18,7 +18,7 @@ RSpec.describe Staticz::Cs do
       end
 
       it "generates the correct paths" do
-        expect(Staticz::Manifest.instance.elements.first.source_path).to eq("src/like.coffee")
+        expect(Staticz::Manifest.instance.elements.first.source_path).to eq("src/like.js")
         expect(Staticz::Manifest.instance.elements.first.build_path).to eq("build/like.js")
       end
 
@@ -36,8 +36,8 @@ RSpec.describe Staticz::Cs do
     context "in subfolder" do
       before do
         Staticz::Manifest.define do
-          sub :scripts do
-            coffee :like
+          sub :components do
+            js :like
           end
         end
       end
@@ -46,7 +46,7 @@ RSpec.describe Staticz::Cs do
         expect(Staticz::Manifest.instance.elements).to match(
           [
             have_attributes(elements: match([
-              have_attributes(name: "scripts/like")
+              have_attributes(name: "components/like")
             ]))
           ]
         )
@@ -58,13 +58,13 @@ RSpec.describe Staticz::Cs do
           .elements.first
           .elements.first
           .source_path
-        ).to eq("src/scripts/like.coffee")
+        ).to eq("src/components/like.js")
         expect(Staticz::Manifest
           .instance
           .elements.first
           .elements.first
           .build_path
-        ).to eq("build/scripts/like.js")
+        ).to eq("build/components/like.js")
       end
 
       context "create link function" do
@@ -73,7 +73,7 @@ RSpec.describe Staticz::Cs do
         end
 
         it "generates correct path helper" do
-          expect(scripts_like_path).to eq("scripts/like.js")
+          expect(components_like_path).to eq("components/like.js")
         end
       end
     end

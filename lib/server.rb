@@ -1,5 +1,7 @@
-require 'thin'
-require 'listen'
+require "thin"
+require "listen"
+
+require "manifest/manifest"
 
 module Staticz
   class Server

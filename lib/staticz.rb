@@ -1,9 +1,8 @@
-require_relative 'manifest/manifest'
-require_relative 'template'
-require_relative 'server'
-require_relative 'builder'
-require_relative 'helpers'
-require_relative 'colors'
+require_relative "template"
+require_relative "server"
+require_relative "builder"
+require_relative "utils/colors"
+require_relative "utils/helpers"
 
 module Staticz
   def self.init

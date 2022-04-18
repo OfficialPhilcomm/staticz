@@ -1,11 +1,11 @@
-require_relative "../../lib/manifest/manifest"
+require_relative "../../../lib/manifest/manifest"
 
-RSpec.describe Staticz::Sass do
+RSpec.describe Staticz::Compilable::Scss do
   context "generated from manifest" do
     context "on top level" do
       before do
         Staticz::Manifest.define do
-          sass :styles
+          scss :styles
         end
       end
 
@@ -18,7 +18,7 @@ RSpec.describe Staticz::Sass do
       end
 
       it "generates the correct paths" do
-        expect(Staticz::Manifest.instance.elements.first.source_path).to eq("src/styles.sass")
+        expect(Staticz::Manifest.instance.elements.first.source_path).to eq("src/styles.scss")
         expect(Staticz::Manifest.instance.elements.first.build_path).to eq("build/styles.css")
       end
 
@@ -37,7 +37,7 @@ RSpec.describe Staticz::Sass do
       before do
         Staticz::Manifest.define do
           sub :css do
-            sass :styles
+            scss :styles
           end
         end
       end
@@ -58,7 +58,7 @@ RSpec.describe Staticz::Sass do
           .elements.first
           .elements.first
           .source_path
-        ).to eq("src/css/styles.sass")
+        ).to eq("src/css/styles.scss")
         expect(Staticz::Manifest
           .instance
           .elements.first

@@ -14,31 +14,31 @@ module Staticz
     end
 
     def haml(name, &block)
-      elements.push(Staticz::Haml.new("#{@name}/#{name}"))
+      elements.push(Staticz::Compilable::Haml.new("#{@name}/#{name}"))
     end
 
     def sass(name, &block)
-      elements.push(Staticz::Sass.new("#{@name}/#{name}"))
+      elements.push(Staticz::Compilable::Sass.new("#{@name}/#{name}"))
     end
 
     def scss(name, &block)
-      elements.push(Staticz::Scss.new("#{@name}/#{name}"))
+      elements.push(Staticz::Compilable::Scss.new("#{@name}/#{name}"))
     end
 
     def js(name, &block)
-      elements.push(Staticz::Js.new("#{@name}/#{name}"))
+      elements.push(Staticz::Compilable::Js.new("#{@name}/#{name}"))
     end
 
     def coffee(name, &block)
-      elements.push(Staticz::Cs.new("#{@name}/#{name}"))
+      elements.push(Staticz::Compilable::Cs.new("#{@name}/#{name}"))
     end
 
     def react(name, &block)
-      elements.push(Staticz::React.new("#{@name}/#{name}"))
+      elements.push(Staticz::Compilable::React.new("#{@name}/#{name}"))
     end
 
     def file(name, &block)
-      elements.push(Staticz::SimpleFile.new("#{@name}/#{name}"))
+      elements.push(Staticz::Compilable::SimpleFile.new("#{@name}/#{name}"))
     end
 
     def build

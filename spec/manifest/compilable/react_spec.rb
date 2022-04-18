@@ -1,25 +1,25 @@
-require_relative "../../lib/manifest/manifest"
+require_relative "../../../lib/manifest/manifest"
 
-RSpec.describe Staticz::Haml do
+RSpec.describe Staticz::Compilable::React do
   context "generated from manifest" do
     context "on top level" do
       before do
         Staticz::Manifest.define do
-          haml :index
+          react :like
         end
       end
 
       it "generates an instance" do
         expect(Staticz::Manifest.instance.elements).to match(
           [
-            have_attributes(name: :index)
+            have_attributes(name: :like)
           ]
         )
       end
 
       it "generates the correct paths" do
-        expect(Staticz::Manifest.instance.elements.first.source_path).to eq("src/index.haml")
-        expect(Staticz::Manifest.instance.elements.first.build_path).to eq("build/index.html")
+        expect(Staticz::Manifest.instance.elements.first.source_path).to eq("src/like.js")
+        expect(Staticz::Manifest.instance.elements.first.build_path).to eq("build/like.js")
       end
 
       context "create link function" do
@@ -28,7 +28,7 @@ RSpec.describe Staticz::Haml do
         end
 
         it "generates correct path helper" do
-          expect(index_path).to eq("index.html")
+          expect(like_path).to eq("like.js")
         end
       end
     end
@@ -36,8 +36,8 @@ RSpec.describe Staticz::Haml do
     context "in subfolder" do
       before do
         Staticz::Manifest.define do
-          sub :test_folder do
-            haml :index
+          sub :components do
+            react :like
           end
         end
       end
@@ -46,7 +46,7 @@ RSpec.describe Staticz::Haml do
         expect(Staticz::Manifest.instance.elements).to match(
           [
             have_attributes(elements: match([
-              have_attributes(name: "test_folder/index")
+              have_attributes(name: "components/like")
             ]))
           ]
         )
@@ -58,13 +58,13 @@ RSpec.describe Staticz::Haml do
           .elements.first
           .elements.first
           .source_path
-        ).to eq("src/test_folder/index.haml")
+        ).to eq("src/components/like.js")
         expect(Staticz::Manifest
           .instance
           .elements.first
           .elements.first
           .build_path
-        ).to eq("build/test_folder/index.html")
+        ).to eq("build/components/like.js")
       end
 
       context "create link function" do
@@ -73,7 +73,7 @@ RSpec.describe Staticz::Haml do
         end
 
         it "generates correct path helper" do
-          expect(test_folder_index_path).to eq("test_folder/index.html")
+          expect(components_like_path).to eq("components/like.js")
         end
       end
     end
