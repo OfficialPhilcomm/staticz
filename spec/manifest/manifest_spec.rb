@@ -1,4 +1,4 @@
-require_relative "../lib/manifest/manifest"
+require_relative "../../lib/manifest/manifest"
 
 RSpec.describe "manifest" do
   context "generate manifest from define" do
