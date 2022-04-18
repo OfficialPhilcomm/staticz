@@ -1,3 +1,7 @@
+# 1.0.4
+Add helper to insert inline svgs
+Add ability to include raw files in build
+
 # 1.0.3
 Fix missing babel transpiler dependency
 
