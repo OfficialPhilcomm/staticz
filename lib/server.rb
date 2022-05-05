@@ -1,12 +1,13 @@
 require "thin"
 require "listen"
+require "io/console"
 
-require "manifest/manifest"
+require_relative "manifest/manifest"
 
 module Staticz
   class Server
     def initialize
-      puts "Starting server..."
+      Thin::Logging.silent = true
 
       app = Rack::Builder.new do
         map "/" do
@@ -18,8 +19,7 @@ module Staticz
       thin_server = Thin::Server.new '127.0.0.1', 3000
       thin_server.app = app
 
-      puts "Building..."
-      Staticz::Builder.new
+      build_manifest
 
       Thread.new { listen_to_file_changes }
       thin_server.start
@@ -35,11 +35,17 @@ module Staticz
           end
           .join(", ")
 
+        $stdout.clear_screen
         puts "#{file_names} changed, rebuilding..."
-        Builder.new
+        build_manifest
         puts "Rebuilding successful"
       end
       listener.start
+    end
+
+    def build_manifest
+      Staticz::Builder.new
+      Staticz::Manifest.instance.print
     end
   end
 end

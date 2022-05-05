@@ -63,8 +63,6 @@ module Staticz
       elements.each do |e|
         e.build
       end
-
-      print
     end
 
     def self.define(&block)

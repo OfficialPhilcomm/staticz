@@ -20,12 +20,16 @@ module Staticz
       "#{path.gsub(/[\/-]/, "_")}_path"
     end
 
-    def valid
-      if exists?
-        Colors.in_green("✔")
-      else
-        Colors.in_red("✘ (file does not exist)")
-      end
+    def valid?
+      errors.empty?
+    end
+
+    def errors
+      errors = []
+
+      errors << "File does not exist" if !exists?
+
+      errors
     end
 
     def create_link_function
@@ -34,7 +38,16 @@ module Staticz
     end
 
     def print(indentation)
-      puts "#{" " * (indentation * 3)}└─ #{tile_type_name}: #{path} #{valid} -> #{path_method_name}"
+      valid_symbol = if valid?
+        Colors.in_green("✔")
+      else
+        Colors.in_red("✘")
+      end
+
+      puts "#{" " * (indentation * 3)}└─ #{tile_type_name}: #{path} #{valid_symbol} -> #{path_method_name}"
+      errors.each do |error|
+        puts "#{" " * (indentation * 3)}   #{Colors.in_red(error)}"
+      end
     end
   end
 end

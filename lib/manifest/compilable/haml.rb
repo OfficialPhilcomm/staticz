@@ -18,6 +18,21 @@ module Staticz
         @name = name
       end
 
+      def errors
+        errors = super
+
+        if exists?
+          begin
+            engine = ::Haml::Engine.new(File.read(source_path))
+            engine.render
+          rescue => e
+            errors << e.message
+          end
+        end
+
+        errors
+      end
+
       def build
         if exists?
           engine = ::Haml::Engine.new(File.read(source_path))
