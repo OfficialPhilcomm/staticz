@@ -25,6 +25,21 @@ module Staticz
           File.write build_path, engine.render
         end
       end
+
+      def errors
+        errors = super
+
+        if exists?
+          begin
+            engine = ::SassC::Engine.new(File.read(source_path), syntax: :scss)
+            engine.render
+          rescue => e
+            errors << e.message
+          end
+        end
+
+        errors
+      end
     end
   end
 end
