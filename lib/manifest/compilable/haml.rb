@@ -34,7 +34,7 @@ module Staticz
       end
 
       def build
-        if exists?
+        if valid?
           engine = ::Haml::Engine.new(File.read(source_path))
 
           File.write build_path, engine.render
