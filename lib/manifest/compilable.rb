@@ -1,3 +1,5 @@
+require "io/console"
+
 module Staticz
   module Compilable
     def path
@@ -45,8 +47,15 @@ module Staticz
       end
 
       puts "#{" " * (indentation * 3)}└─ #{tile_type_name}: #{path} #{valid_symbol} -> #{path_method_name}"
-      errors.each do |error|
-        puts "#{" " * (indentation * 3)}   #{Colors.in_red(error)}"
+
+      _height, width = IO.console.winsize
+
+      errors.each do |full_error|
+        line_width = width - (indentation * 3) - 3
+        multiline_errors = full_error.scan(/.{1,#{line_width}}/)
+        multiline_errors.each do |error|
+          puts "#{" " * (indentation * 3)}   #{Colors.in_red(error)}"
+        end
       end
     end
   end
