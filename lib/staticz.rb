@@ -1,6 +1,7 @@
 require_relative "template"
 require_relative "server"
 require_relative "builder"
+require_relative "settings"
 require_relative "utils/colors"
 require_relative "utils/helpers"
 
@@ -23,11 +24,13 @@ module Staticz
         puts usage
       end
     when 'server'
+      Staticz::Settings.development!
       Staticz::Server.new
     when 'manifest'
       load "#{Dir.pwd}/manifest.rb"
       Staticz::Manifest.instance.print
     when 'build'
+      Staticz::Settings.production!
       Staticz::Builder.new
     else
       puts usage
