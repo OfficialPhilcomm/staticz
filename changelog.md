@@ -1,6 +1,7 @@
 # 1.0.5
 Improved manifest printout, now includes compiler errors
-Added page reload when rebuilding manifest ()
+Added page reload when rebuilding manifest (section added to readme)
+Make haml files accessible via path without `.html` ending (`/foo/bar.html` can be accessed as `/foo/bar`), as some webservers support this
 
 # 1.0.4
 Added helper to insert inline svgs

@@ -31,6 +31,11 @@ module Staticz
         end
         map "/" do
           use Rack::Static, urls: {"/" => "build/index.html"}
+
+          Staticz::Server.all_haml(Staticz::Manifest.instance.elements).each do |e|
+            use Rack::Static, urls: {"/#{e.name}" => e.build_path}
+          end
+
           run Rack::Directory.new("build")
         end
       end
@@ -42,6 +47,18 @@ module Staticz
 
       Thread.new { listen_to_file_changes }
       thin_server.start
+    end
+
+    def self.all_haml(elements)
+      elements.map do |e|
+        if e.is_a? Staticz::Compilable::Haml
+          e
+        elsif e.is_a? Staticz::Sub
+          all_haml(e.elements)
+        end
+      end.flatten.select do |e|
+        e
+      end
     end
 
     private
