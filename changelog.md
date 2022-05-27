@@ -1,16 +1,20 @@
+# 1.0.5
+Improved manifest printout, now includes compiler errors
+Added page reload when rebuilding manifest ()
+
 # 1.0.4
-Add helper to insert inline svgs
-Add ability to include raw files in build
+Added helper to insert inline svgs
+Added ability to include raw files in build
 
 # 1.0.3
-Fix missing babel transpiler dependency
+Fixed missing babel transpiler dependency
 
 # 1.0.2
-Add serving of `index.html` on `/`
-Add basic react functionality (readme contains more info)
+Added serving of `index.html` on `/`
+Added basic react functionality (readme contains more info)
 
 # 1.0.1
-Add better gem description on rubygems.org
+Added better gem description on rubygems.org
 
 # 1.0.0
-Add initial version
+Added initial version
