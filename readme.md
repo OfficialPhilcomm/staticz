@@ -79,6 +79,9 @@ Javascript files work the same way. The helper `= javascript scripts_toggle_path
 ##### Inline svg
 If you wanna print an inline svg, just use `= inline_svg("full_path")`. Full path is for example `img/test.svg`.
 
+##### Reload
+Include `= reload_js` in the haml's head to enable automatic page reload on rebuild. This will be automatically excluded when using `staticz build`.
+
 #### Experimental: React
 A new experimental feature is React. It is a very basic implementation that does only support very basic components.
 The current restrictions are:
