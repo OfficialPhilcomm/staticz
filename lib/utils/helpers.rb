@@ -57,3 +57,7 @@ end
 def react_component(name, css_class = nil)
   "<div data-component=\"#{name}\" class=\"#{css_class}\"></div>"
 end
+
+def reload_js
+  "<script src=\"reload.js\" defer></script>"
+end

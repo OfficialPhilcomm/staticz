@@ -3,6 +3,7 @@ require "listen"
 require "io/console"
 
 require_relative "manifest/manifest"
+require_relative "modules/reload"
 
 module Staticz
   class Server
@@ -10,6 +11,24 @@ module Staticz
       Thin::Logging.silent = true
 
       app = Rack::Builder.new do
+        map "/reload.js" do
+          run lambda { |env|
+            [
+              200,
+              {"Content-Type" => "text/plain"},
+              Staticz::Modules::Reload.build_reload_js
+            ]
+          }
+        end
+        map "/api/test" do
+          run lambda { |env|
+            [
+              200,
+              {"Content-Type" => "text/plain"},
+              Staticz::Modules::Reload.hash
+            ]
+          }
+        end
         map "/" do
           use Rack::Static, urls: {"/" => "build/index.html"}
           run Rack::Directory.new("build")
@@ -44,6 +63,8 @@ module Staticz
     end
 
     def build_manifest
+      Staticz::Modules::Reload.generate_hash
+
       Staticz::Builder.new
       Staticz::Manifest.instance.print
     end
