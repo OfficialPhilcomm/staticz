@@ -14,7 +14,7 @@ module Staticz
           function checkForChanges() {
             console.log("Check for file changes");
             var response = new XMLHttpRequest();
-            response.open("GET", "api/test", true);
+            response.open("GET", "api/hash", true);
             response.onload = function() {
               if (response.status === 200) {
                 if (!hash) {

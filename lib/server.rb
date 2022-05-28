@@ -20,7 +20,7 @@ module Staticz
             ]
           }
         end
-        map "/api/test" do
+        map "/api/hash" do
           run lambda { |env|
             [
               200,
