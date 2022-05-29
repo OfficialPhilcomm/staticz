@@ -1,3 +1,6 @@
+# 1.0.6
+Added ability to put custom code into `/lib` folder. All `.rb` files in this folder will be loaded automatically and reloaded when rebuilding the app.
+
 # 1.0.5
 Improved manifest printout, now includes compiler errors
 Added page reload when rebuilding manifest (section added to readme)
