@@ -1,3 +1,5 @@
+require_relative "modules/lib_loader"
+
 module Staticz
   class Builder
     def initialize
@@ -7,6 +9,8 @@ module Staticz
     private
 
     def build
+      Staticz::Modules::LibLoader.load_files
+
       Dir.mkdir('build') unless File.exist?('build')
 
       Staticz::Manifest.instance.build

@@ -64,10 +64,13 @@ module Staticz
     private
 
     def listen_to_file_changes
-      listener = Listen.to('src') do |modified, added, removed|
+      folders = ["src"]
+      folders << "lib" if Dir.exist? "lib"
+
+      listener = Listen.to(*folders) do |modified, added, removed|
         file_names = (modified + added + removed)
           .map do |file|
-            file.gsub "#{Dir.pwd}/src/", ""
+            file.gsub "#{Dir.pwd}/", ""
           end
           .join(", ")
 
