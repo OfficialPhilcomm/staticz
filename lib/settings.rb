@@ -17,3 +17,11 @@ module Staticz
     end
   end
 end
+
+def development?
+  Staticz::Settings.development?
+end
+
+def production?
+  Staticz::Settings.production?
+end
