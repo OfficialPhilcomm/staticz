@@ -59,6 +59,7 @@ Much like rails, every resource generates a path for you to use. For example `sr
 
 ##### Render
 If you want to include the partial `src/nav.haml` in your `index.haml`, you can just use `= render "nav"`. You can also instead use a symbol.
+You can also pass locals, like `= render "nav", locals: {foo: "bar"}`.
 
 Note: you don't have to parts that you render in the manifest to avoid creating seperate `html` files for them. Parts will just be rendered into the view they are called from.
 

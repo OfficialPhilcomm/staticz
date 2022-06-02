@@ -1,3 +1,7 @@
+# 1.0.7
+Added `development?` and `production?` helpers. `staticz server` will run the project in development mode, while `staticz build` runs it in production mode.
+Added locals functionality to `render` helper. For more info, see the helper section on the readme.
+
 # 1.0.6
 Added ability to put custom code into `/lib` folder. All `.rb` files in this folder will be loaded automatically and reloaded when rebuilding the app.
 
