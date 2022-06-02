@@ -1,8 +1,8 @@
-def render(component, &block)
+def render(component, locals: {}, &block)
   engine = ::Haml::Engine.new(File.read("src/#{component}.haml"))
 
   if block
-    engine.render({}, &block)
+    engine.render(Object.new, locals, &block)
   else
     engine.render
   end
