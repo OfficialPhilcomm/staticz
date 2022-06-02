@@ -1,3 +1,6 @@
+# 1.0.8
+Fixed `render` locals not working without giving it a block
+
 # 1.0.7
 Added `development?` and `production?` helpers. `staticz server` will run the project in development mode, while `staticz build` runs it in production mode.  
 Added locals functionality to `render` helper. For more info, see the helper section on the readme.

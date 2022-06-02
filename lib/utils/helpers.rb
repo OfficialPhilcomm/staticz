@@ -4,7 +4,7 @@ def render(component, locals: {}, &block)
   if block
     engine.render(Object.new, locals, &block)
   else
-    engine.render
+    engine.render(Object.new, locals)
   end
 end
 
