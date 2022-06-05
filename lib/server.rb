@@ -83,10 +83,10 @@ module Staticz
     end
 
     def build_manifest
-      Staticz::Modules::Reload.generate_hash
-
       Staticz::Builder.new
       Staticz::Manifest.instance.print
+
+      Staticz::Modules::Reload.generate_hash
     end
   end
 end
