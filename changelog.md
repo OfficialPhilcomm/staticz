@@ -2,6 +2,7 @@
 Added `/` in front of all generated paths
 Added `shorten` option for generated paths (`index_path(shorten: true)`), which trims the file ending
 Added server trigger for rebuilding when `manifest.rb` is modified
+Added resource path generation for `file` types in manifest
 Fixed `staticz manifest` output showing errors because routes are not created
 
 # 1.0.8

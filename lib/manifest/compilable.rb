@@ -19,7 +19,7 @@ module Staticz
     end
 
     def path_method_name
-      "#{path.gsub(/[\/-]/, "_")}_path"
+      "#{path.gsub(/[.\/-]/, "_")}_path"
     end
 
     def valid?

@@ -16,10 +16,8 @@ module Staticz
       end
 
       def create_link_function
-      end
-
-      def path_method_name
-        "no path created"
+        link_path = "/#{name}"
+        Object.send(:define_method, path_method_name) { link_path }
       end
 
       def tile_type_name = "File"
