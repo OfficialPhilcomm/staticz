@@ -46,6 +46,7 @@ module Staticz
       build_manifest
 
       Thread.new { listen_to_file_changes }
+      Thread.new { listen_to_manifest_changes }
       thin_server.start
     end
 
@@ -68,18 +69,29 @@ module Staticz
       folders << "lib" if Dir.exist? "lib"
 
       listener = Listen.to(*folders) do |modified, added, removed|
-        file_names = (modified + added + removed)
-          .map do |file|
-            file.gsub "#{Dir.pwd}/", ""
-          end
-          .join(", ")
-
-        $stdout.clear_screen
-        puts "#{file_names} changed, rebuilding..."
-        build_manifest
-        puts "Rebuilding successful"
+        trigger_rebuild(modified, added, removed)
       end
       listener.start
+    end
+
+    def listen_to_manifest_changes
+      listener = Listen.to("./", only: /^manifest.rb$/) do |modified, added, removed|
+        trigger_rebuild(modified, added, removed)
+      end
+      listener.start
+    end
+
+    def trigger_rebuild(modified, added, removed)
+      file_names = (modified + added + removed)
+        .map do |file|
+          file.gsub "#{Dir.pwd}/", ""
+        end
+        .join(", ")
+
+      $stdout.clear_screen
+      puts "#{file_names} changed, rebuilding..."
+      build_manifest
+      puts "Rebuilding successful"
     end
 
     def build_manifest
