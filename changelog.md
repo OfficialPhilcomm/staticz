@@ -1,4 +1,4 @@
-# 1.0.9
+# 1.0.10
 Added `/` in front of all generated paths
 Added `shorten` option for generated paths (`index_path(shorten: true)`), which trims the file ending
 Added server trigger for rebuilding when `manifest.rb` is modified
