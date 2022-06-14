@@ -27,7 +27,12 @@ module Staticz
       Staticz::Settings.development!
       Staticz::Server.new
     when 'manifest'
+      Staticz::Settings.development!
+
       load "#{Dir.pwd}/manifest.rb"
+      Staticz::Modules::LibLoader.load_files
+      Staticz::Manifest.instance.create_link_functions
+
       Staticz::Manifest.instance.print
     when 'build'
       Staticz::Settings.production!

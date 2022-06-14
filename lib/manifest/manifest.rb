@@ -56,12 +56,16 @@ module Staticz
     def build
       load "#{Dir.pwd}/manifest.rb"
 
-      elements.each do |e|
-        e.create_link_function
-      end
+      create_link_functions
 
       elements.each do |e|
         e.build
+      end
+    end
+
+    def create_link_functions
+      elements.each do |e|
+        e.create_link_function
       end
     end
 
