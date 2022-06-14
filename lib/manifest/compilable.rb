@@ -35,8 +35,15 @@ module Staticz
     end
 
     def create_link_function
-      link_path = "#{name}.#{build_file_ending}"
-      Object.send(:define_method, path_method_name) { link_path }
+      link_path = "/#{name}.#{build_file_ending}"
+      shortened_link_path = "/#{name}"
+      Object.send(:define_method, path_method_name) do |shorten: false|
+        if shorten
+          shortened_link_path
+        else
+          link_path
+        end
+      end
     end
 
     def print(indentation)

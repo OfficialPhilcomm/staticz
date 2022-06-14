@@ -1,4 +1,8 @@
 # 1.0.8
+Added `/` in front of all generated paths
+Added `shorten` option for generated paths (`index_path(shorten: true)`), which trims the file ending
+
+# 1.0.8
 Fixed `render` locals not working without giving it a block
 
 # 1.0.7
