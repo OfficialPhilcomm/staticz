@@ -19,8 +19,12 @@ module Staticz
 
       def build
         if exists?
-          File.write build_path, File.read(source_path)
+          File.write build_path, render
         end
+      end
+
+      def render
+        File.read(source_path)
       end
     end
   end

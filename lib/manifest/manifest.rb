@@ -7,6 +7,7 @@ require_relative "compilable/react"
 require_relative "compilable/sass"
 require_relative "compilable/scss"
 require_relative "compilable/simple_file"
+require_relative "js_bundle"
 
 module Staticz
   class Manifest
@@ -51,6 +52,13 @@ module Staticz
 
     def file(name)
       elements.push(Staticz::Compilable::SimpleFile.new(name))
+    end
+
+    def js_bundle(name, &block)
+      s = Staticz::JSBundle.new(name)
+      elements.push(s)
+
+      s.instance_eval(&block)
     end
 
     def build

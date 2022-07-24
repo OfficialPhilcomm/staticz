@@ -20,10 +20,12 @@ module Staticz
 
       def build
         if exists?
-          js = CoffeeScript.compile File.read(source_path)
-
-          File.write build_path, js
+          File.write build_path, render
         end
+      end
+
+      def render
+        CoffeeScript.compile File.read(source_path)
       end
     end
   end

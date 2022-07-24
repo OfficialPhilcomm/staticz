@@ -20,10 +20,12 @@ module Staticz
 
       def build
         if exists?
-          engine = Babel::Transpiler.transform File.read(source_path)
-
-          File.write build_path, engine["code"]
+          File.write build_path, render
         end
+      end
+
+      def render
+        Babel::Transpiler.transform(File.read(source_path))["code"]
       end
     end
   end
