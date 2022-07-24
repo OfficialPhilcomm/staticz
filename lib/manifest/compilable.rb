@@ -2,6 +2,25 @@ require "io/console"
 
 module Staticz
   module Compilable
+    def self.included(base)
+      base.extend(ClassMethods)
+    end
+    module ClassMethods
+      def compile(source_file_ending, build_file_ending, file_type_name)
+        define_method :source_file_ending do
+          source_file_ending
+        end
+
+        define_method :build_file_ending do
+          build_file_ending
+        end
+
+        define_method :file_type_name do
+          file_type_name
+        end
+      end
+    end
+
     def path
       name.to_s
     end
@@ -53,7 +72,7 @@ module Staticz
         Colors.in_red("✘")
       end
 
-      puts "#{" " * (indentation * 3)}└─ #{tile_type_name}: #{path} #{valid_symbol} -> #{path_method_name}"
+      puts "#{" " * (indentation * 3)}└─ #{file_type_name}: #{path} #{valid_symbol} -> #{path_method_name}"
 
       _height, width = IO.console.winsize
 

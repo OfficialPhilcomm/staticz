@@ -5,6 +5,8 @@ module Staticz
     class SimpleFile
       include Compilable
 
+      compile "", "", "File"
+
       attr_reader :name
 
       def source_path
@@ -19,8 +21,6 @@ module Staticz
         link_path = "/#{name}"
         Object.send(:define_method, path_method_name) { link_path }
       end
-
-      def tile_type_name = "File"
 
       def initialize(name)
         @name = name

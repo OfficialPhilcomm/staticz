@@ -7,11 +7,7 @@ module Staticz
 
       attr_reader :name
 
-      def source_file_ending = "js"
-
-      def build_file_ending = "js"
-
-      def tile_type_name = "Js"
+      compile "js", "js", "Js"
 
       def initialize(name)
         @name = name

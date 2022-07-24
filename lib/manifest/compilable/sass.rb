@@ -8,11 +8,7 @@ module Staticz
 
       attr_reader :name
 
-      def source_file_ending = "sass"
-
-      def build_file_ending = "css"
-
-      def tile_type_name = "Sass"
+      compile "sass", "css", "Sass"
 
       def initialize(name)
         @name = name
