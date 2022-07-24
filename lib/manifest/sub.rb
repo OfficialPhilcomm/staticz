@@ -41,6 +41,13 @@ module Staticz
       elements.push(Staticz::Compilable::SimpleFile.new("#{@name}/#{name}"))
     end
 
+    def js_bundle(name, &block)
+      s = Staticz::JSBundle.new("#{@name}/#{name}", @name)
+      elements.push(s)
+
+      s.instance_eval(&block)
+    end
+
     def build
       Dir.mkdir("build/#{name}") if !Dir.exist?("build/#{name}")
 

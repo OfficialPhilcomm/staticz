@@ -2,29 +2,30 @@ require_relative "sub"
 
 module Staticz
   class JSBundle
-    attr_reader :name, :elements
+    attr_reader :name, :location, :elements
 
-    def initialize(name)
+    def initialize(name, location)
       @name = name
+      @location = location
       @elements = []
     end
 
     def sub(name, &block)
-      s = Staticz::Sub.new("#{name}")
+      s = Staticz::Sub.new("#{location}/#{name}")
       elements.push(s)
       s.instance_eval(&block)
     end
 
     def js(name, &block)
-      elements.push(Staticz::Compilable::Js.new("#{name}"))
+      elements.push(Staticz::Compilable::Js.new("#{location}/#{name}"))
     end
 
     def coffee(name, &block)
-      elements.push(Staticz::Compilable::Cs.new("#{name}"))
+      elements.push(Staticz::Compilable::Cs.new("#{location}/#{name}"))
     end
 
     def react(name, &block)
-      elements.push(Staticz::Compilable::React.new("#{name}"))
+      elements.push(Staticz::Compilable::React.new("#{location}/#{name}"))
     end
 
     def build
@@ -51,7 +52,7 @@ module Staticz
     end
 
     def path_method_name
-      "#{name.to_s.gsub(/[.\/-]/, "_")}_path"
+      "#{name.to_s.gsub(/[.\/-]/, "_")}_js_bundle_path"
     end
 
     def create_link_function
@@ -63,7 +64,7 @@ module Staticz
     end
 
     def print(indentation)
-      puts "#{" " * (indentation * 3)}└─ Sub: #{name}"
+      puts "#{" " * (indentation * 3)}└─ JSBundle: #{name} -> #{path_method_name}"
       elements.each do |e|
         e.print(indentation + 1)
       end

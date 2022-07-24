@@ -55,7 +55,7 @@ module Staticz
     end
 
     def js_bundle(name, &block)
-      s = Staticz::JSBundle.new(name)
+      s = Staticz::JSBundle.new(name, "")
       elements.push(s)
 
       s.instance_eval(&block)
