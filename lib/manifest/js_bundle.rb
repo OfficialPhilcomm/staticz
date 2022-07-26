@@ -11,21 +11,29 @@ module Staticz
     end
 
     def sub(name, &block)
-      s = Staticz::Sub.new("#{location}/#{name}")
+      s = Staticz::Sub.new(generate_location_path(name))
       elements.push(s)
       s.instance_eval(&block)
     end
 
     def js(name, &block)
-      elements.push(Staticz::Compilable::Js.new("#{location}/#{name}"))
+      elements.push(Staticz::Compilable::Js.new(generate_location_path(name)))
     end
 
     def coffee(name, &block)
-      elements.push(Staticz::Compilable::Cs.new("#{location}/#{name}"))
+      elements.push(Staticz::Compilable::Cs.new(generate_location_path(name)))
     end
 
     def react(name, &block)
-      elements.push(Staticz::Compilable::React.new("#{location}/#{name}"))
+      elements.push(Staticz::Compilable::React.new(generate_location_path(name)))
+    end
+
+    def generate_location_path(name)
+      if location.empty?
+        name
+      else
+        "#{location}/#{name}"
+      end
     end
 
     def build

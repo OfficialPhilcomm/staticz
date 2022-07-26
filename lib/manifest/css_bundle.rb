@@ -11,17 +11,25 @@ module Staticz
     end
 
     def sub(name, &block)
-      s = Staticz::Sub.new("#{location}/#{name}")
+      s = Staticz::Sub.new(generate_location_path(name))
       elements.push(s)
       s.instance_eval(&block)
     end
 
     def sass(name, &block)
-      elements.push(Staticz::Compilable::Sass.new("#{location}/#{name}"))
+      elements.push(Staticz::Compilable::Sass.new(generate_location_path(name)))
     end
 
     def scss(name, &block)
-      elements.push(Staticz::Compilable::Scss.new("#{location}/#{name}"))
+      elements.push(Staticz::Compilable::Scss.new(generate_location_path(name)))
+    end
+
+    def generate_location_path(name)
+      if location.empty?
+        name
+      else
+        "#{location}/#{name}"
+      end
     end
 
     def build
