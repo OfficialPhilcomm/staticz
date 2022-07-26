@@ -146,8 +146,35 @@ Staticz::Manifest.define do
   end
 end
 ```
-
 Note: This will not create a path for now
+
+#### Bundles
+Bundles allow you to combine multiple files into one so you don't have to request n different js/css files in your head.
+
+Both bundle types work as following.
+
+Example folder structure:
+
+```
+index.html
+
+css/
+  navigation.scss
+  footer.sass
+
+  site_specific/
+    index.sass
+```
+
+Now to combine all these into one file, your manifest looks like:
+
+```ruby
+Staticz::Manifest.define do
+  sub :img do
+    file "logo.png"
+  end
+end
+```
 
 ### Build
 You can build the project with `staticz build`. All files included in the manifest will be built and put into the `build` folder. In a CI workflow, you can then take the build files and push them to a static website server.
