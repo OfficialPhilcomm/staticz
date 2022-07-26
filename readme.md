@@ -170,11 +170,24 @@ Now to combine all these into one file, your manifest looks like:
 
 ```ruby
 Staticz::Manifest.define do
-  sub :img do
-    file "logo.png"
+  haml :index
+
+  sub :css do
+    css_bundle :index do
+      scss :navigation
+      sass :footer
+
+      sub :site_specific do
+        sass :index
+      end
+    end
   end
 end
 ```
+
+This will create the css bundle `css/index_bundle.css`. The bundle will be positioned in the folder where the bundle is "opened". Of course this creates a path helper as well.
+
+In a `css_bundle`, you can use `sass` and `scss`. In a `js_bundle`, you can use `js`, `coffee` and `react`.
 
 ### Build
 You can build the project with `staticz build`. All files included in the manifest will be built and put into the `build` folder. In a CI workflow, you can then take the build files and push them to a static website server.
