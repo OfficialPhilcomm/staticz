@@ -16,10 +16,12 @@ module Staticz
 
       def build
         if valid?
-          engine = ::SassC::Engine.new(File.read(source_path), syntax: :sass, style: :compressed)
-
-          File.write build_path, engine.render
+          File.write build_path, render
         end
+      end
+
+      def render
+        ::SassC::Engine.new(File.read(source_path), syntax: :sass, style: :compressed).render
       end
 
       def errors

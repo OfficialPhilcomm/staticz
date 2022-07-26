@@ -48,6 +48,13 @@ module Staticz
       s.instance_eval(&block)
     end
 
+    def css_bundle(name, &block)
+      s = Staticz::CSSBundle.new("#{@name}/#{name}", @name)
+      elements.push(s)
+
+      s.instance_eval(&block)
+    end
+
     def build
       Dir.mkdir("build/#{name}") if !Dir.exist?("build/#{name}")
 
