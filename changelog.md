@@ -1,3 +1,6 @@
+# 1.0.11
+Added css and js bundles (consult `readme.md` for more info)
+
 # 1.0.10
 Added `/` in front of all generated paths
 Added `shorten` option for generated paths (`index_path(shorten: true)`), which trims the file ending
