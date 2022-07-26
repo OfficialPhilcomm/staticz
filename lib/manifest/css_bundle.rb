@@ -70,7 +70,7 @@ module Staticz
     def print(indentation)
       puts "#{" " * (indentation * 3)}└─ CSSBundle: #{name} -> #{path_method_name}"
       elements.each do |e|
-        e.print(indentation + 1)
+        e.print(indentation + 1, :no_path)
       end
     end
 

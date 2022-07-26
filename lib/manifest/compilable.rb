@@ -65,14 +65,17 @@ module Staticz
       end
     end
 
-    def print(indentation)
+    def print(indentation, *args)
       valid_symbol = if valid?
         Colors.in_green("✔")
       else
         Colors.in_red("✘")
       end
 
-      puts "#{" " * (indentation * 3)}└─ #{file_type_name}: #{path} #{valid_symbol} -> #{path_method_name}"
+      compilable_string = "#{" " * (indentation * 3)}└─ #{file_type_name}: #{path} #{valid_symbol}"
+      compilable_string << " -> #{path_method_name}" if !args.include? :no_path
+
+      puts compilable_string
 
       _height, width = IO.console.winsize
 

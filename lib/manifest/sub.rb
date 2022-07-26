@@ -69,10 +69,10 @@ module Staticz
       end
     end
 
-    def print(indentation)
+    def print(indentation, *args)
       puts "#{" " * (indentation * 3)}└─ Sub: #{name}"
       elements.each do |e|
-        e.print(indentation + 1)
+        e.print(indentation + 1, *args)
       end
     end
 
