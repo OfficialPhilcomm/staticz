@@ -53,7 +53,11 @@ module Staticz
 
       Staticz::Settings.set_environment(params[:environment])
 
-      Staticz::Builder.new(listener_class: BuildListener)
+      result = Staticz::Builder.new(listener_class: BuildListener).build
+
+      if result.flatten.include? false
+        exit 1
+      end
     end
   end
 

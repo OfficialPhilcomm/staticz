@@ -85,6 +85,12 @@ module Staticz
       end
     end
 
+    def valid?
+      elements.map do |e|
+        e.valid?
+      end
+    end
+
     def self.define(&block)
       Staticz::Manifest.instance.define(block)
     end

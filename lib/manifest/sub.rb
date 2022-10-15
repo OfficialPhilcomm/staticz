@@ -69,6 +69,12 @@ module Staticz
       end
     end
 
+    def valid?
+      elements.map do |e|
+        e.valid?
+      end
+    end
+
     def print(indentation, *args)
       puts "#{" " * (indentation * 3)}└─ Sub: #{name}"
       elements.each do |e|

@@ -75,6 +75,12 @@ module Staticz
       end
     end
 
+    def valid?
+      elements.map do |e|
+        e.valid?
+      end
+    end
+
     def print(indentation)
       puts "#{" " * (indentation * 3)}└─ JSBundle: #{name} -> #{path_method_name}"
       elements.each do |e|

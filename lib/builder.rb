@@ -5,17 +5,17 @@ require_relative "manifest/manifest"
 module Staticz
   class Builder
     def initialize(listener_class: nil)
-      build(listener_class: listener_class)
+      @listener_class = listener_class
     end
 
-    private
-
-    def build(listener_class: nil)
+    def build
       Staticz::Modules::LibLoader.load_files
 
       Dir.mkdir('build') unless File.exist?('build')
 
-      Staticz::Manifest.instance.build(listener_class: listener_class)
+      Staticz::Manifest.instance.build(listener_class: @listener_class)
+
+      Staticz::Manifest.instance.valid?
     end
   end
 end
