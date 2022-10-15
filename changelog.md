@@ -1,3 +1,6 @@
+# 1.0.12
+Improved command system allowing for better printouts
+
 # 1.0.11
 Added css and js bundles (consult `readme.md` for more info)
 
