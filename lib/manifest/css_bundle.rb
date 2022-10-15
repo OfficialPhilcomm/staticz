@@ -32,8 +32,12 @@ module Staticz
       end
     end
 
-    def build
+    def build(listener_class: nil)
+      listener = listener_class&.new(self)
+
       File.write "build/#{name}_bundle.css", render
+
+      listener&.finish
     end
 
     def render

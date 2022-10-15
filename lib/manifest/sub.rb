@@ -55,11 +55,11 @@ module Staticz
       s.instance_eval(&block)
     end
 
-    def build
+    def build(listener_class: nil)
       Dir.mkdir("build/#{name}") if !Dir.exist?("build/#{name}")
 
       elements.each do |e|
-        e.build
+        e.build(listener_class: listener_class)
       end
     end
 

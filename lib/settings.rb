@@ -19,6 +19,18 @@ module Staticz
     def self.production?
       @@env == :production
     end
+
+    def self.verbose!
+      @@verbose = true
+    end
+
+    def self.verbose?
+      if defined? @@verbose
+        @@verbose == true
+      else
+        false
+      end
+    end
   end
 end
 

@@ -14,9 +14,13 @@ module Staticz
         @name = name
       end
 
-      def build
+      def build(listener_class: nil)
         if exists?
+          listener = listener_class&.new(self)
+
           File.write build_path, render
+
+          listener&.finish
         end
       end
 

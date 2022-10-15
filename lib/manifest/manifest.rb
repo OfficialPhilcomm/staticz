@@ -69,13 +69,13 @@ module Staticz
       s.instance_eval(&block)
     end
 
-    def build
+    def build(listener_class: nil)
       load "#{Dir.pwd}/manifest.rb"
 
       create_link_functions
 
       elements.each do |e|
-        e.build
+        e.build(listener_class: listener_class)
       end
     end
 

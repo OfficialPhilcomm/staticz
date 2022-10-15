@@ -1,6 +1,7 @@
 require "tty-option"
 require_relative "../settings"
 require_relative "../builder"
+require_relative "../utils/colors"
 
 module Staticz
   class BuildCommand
@@ -11,6 +12,12 @@ module Staticz
       command "build"
 
       description "Compile the project"
+    end
+
+    flag :verbose do
+      short "-v"
+      long "--verbose"
+      desc "Use verbose output"
     end
 
     flag :help do
@@ -40,8 +47,41 @@ module Staticz
         exit 1
       end
 
+      if params[:verbose]
+        Staticz::Settings.verbose!
+      end
+
       Staticz::Settings.set_environment(params[:environment])
-      Staticz::Builder.new
+
+      Staticz::Builder.new(listener_class: BuildListener)
+    end
+  end
+
+  class BuildListener
+    def initialize(compilable)
+      if Staticz::Settings.verbose?
+        puts "Compiling #{generate_text(compilable)}"
+      else
+        @spinner = TTY::Spinner.new(
+          "[:spinner] #{generate_text(compilable)}",
+          format: :classic,
+          success_mark: Colors.in_green("✔")
+        )
+
+        @spinner.auto_spin
+      end
+    end
+
+    def generate_text(compilable)
+      if compilable.is_a? Staticz::JSBundle
+        compilable.name
+      else
+        "#{compilable.source_path} -> #{compilable.build_path}"
+      end
+    end
+
+    def finish
+      @spinner.success("(successful)") if !Staticz::Settings.verbose?
     end
   end
 end

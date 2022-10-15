@@ -29,11 +29,14 @@ module Staticz
         errors
       end
 
-      def build
+      def build(listener_class: nil)
         if valid?
-          engine = ::Haml::Engine.new(File.read(source_path))
+          listener = listener_class&.new(self)
 
+          engine = ::Haml::Engine.new(File.read(source_path))
           File.write build_path, engine.render
+
+          listener&.finish
         end
       end
     end
