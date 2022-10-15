@@ -1,5 +1,9 @@
 module Staticz
   class Settings
+    def self.set_environment(environment)
+      @@env = environment
+    end
+
     def self.development!
       @@env = :development
     end

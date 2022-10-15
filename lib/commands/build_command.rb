@@ -19,13 +19,29 @@ module Staticz
       desc "Print this page"
     end
 
+    option :environment do
+      desc "Set the environment"
+      short "-e"
+      long "--environment environment"
+
+      default :production
+      permit [:development, :production]
+      convert :symbol
+    end
+
     def run
       if params[:help]
         print help
-      else
-        Staticz::Settings.production!
-        Staticz::Builder.new
+        exit
       end
+
+      if !params[:environment]
+        puts "Environment must either be development or production"
+        exit 1
+      end
+
+      Staticz::Settings.set_environment(params[:environment])
+      Staticz::Builder.new
     end
   end
 end

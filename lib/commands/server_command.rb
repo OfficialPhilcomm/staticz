@@ -28,6 +28,16 @@ module Staticz
       convert :integer
     end
 
+    option :environment do
+      desc "Set the environment"
+      short "-e"
+      long "--environment environment"
+
+      default :development
+      permit [:development, :production]
+      convert :symbol
+    end
+
     def run
       if params[:help]
         print help
@@ -39,7 +49,12 @@ module Staticz
         exit 1
       end
 
-      Staticz::Settings.development!
+      if !params[:environment]
+        puts "Environment must either be development or production"
+        exit 1
+      end
+
+      Staticz::Settings.set_environment(params[:environment])
       Staticz::Server.new(params[:port])
     end
   end

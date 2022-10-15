@@ -1,5 +1,7 @@
 # 1.0.12
 - Added port argument to `staticz server` command, use `staticz server --help` for more information
+- Added environment argument to `staticz server|build` commands, use `staticz server|build --help` for more information
+- Added environment helpers `development?` and `production?`
 - Improved command system allowing for better printouts
 
 # 1.0.11
