@@ -14,12 +14,14 @@ module Staticz
       end
 
       def build(listener_class: nil)
-        if exists?
-          listener = listener_class&.new(self)
+        listener = listener_class&.new(self)
 
+        if exists?
           File.write build_path, render
 
           listener&.finish
+        else
+          listener&.error
         end
       end
 

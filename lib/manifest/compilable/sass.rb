@@ -15,12 +15,14 @@ module Staticz
       end
 
       def build(listener_class: nil)
-        if valid?
-          listener = listener_class&.new(self)
+        listener = listener_class&.new(self)
 
+        if valid?
           File.write build_path, render
 
           listener&.finish
+        else
+          listener&.error
         end
       end
 

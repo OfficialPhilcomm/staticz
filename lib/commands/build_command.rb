@@ -59,29 +59,46 @@ module Staticz
 
   class BuildListener
     def initialize(compilable)
+      @compilable = compilable
+
       if Staticz::Settings.verbose?
-        puts "Compiling #{generate_text(compilable)}"
+        puts "Compiling #{generate_text}"
       else
         @spinner = TTY::Spinner.new(
-          "[:spinner] #{generate_text(compilable)}",
+          "[:spinner] #{generate_text}",
           format: :classic,
-          success_mark: Colors.in_green("✔")
+          success_mark: Colors.in_green("✔"),
+          error_mark: Colors.in_red("✖")
         )
 
         @spinner.auto_spin
       end
     end
 
-    def generate_text(compilable)
-      if compilable.is_a? Staticz::JSBundle
-        compilable.name
+    def finish
+      @spinner.success(Colors.in_green("(successful)")) if !Staticz::Settings.verbose?
+    end
+
+    def error
+      if Staticz::Settings.verbose?
+        puts Colors.in_red("Error:")
       else
-        "#{compilable.source_path} -> #{compilable.build_path}"
+        @spinner.error(Colors.in_red("(error)"))
+      end
+
+      @compilable.errors.each do |error|
+        puts Colors.in_red(error)
       end
     end
 
-    def finish
-      @spinner.success("(successful)") if !Staticz::Settings.verbose?
+    private
+
+    def generate_text
+      if @compilable.is_a? Staticz::JSBundle
+        @compilable.name
+      else
+        "#{@compilable.source_path} -> #{@compilable.build_path}"
+      end
     end
   end
 end

@@ -30,13 +30,15 @@ module Staticz
       end
 
       def build(listener_class: nil)
-        if valid?
-          listener = listener_class&.new(self)
+        listener = listener_class&.new(self)
 
+        if valid?
           engine = ::Haml::Engine.new(File.read(source_path))
           File.write build_path, engine.render
 
           listener&.finish
+        else
+          listener&.error
         end
       end
     end
