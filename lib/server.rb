@@ -8,7 +8,9 @@ require_relative "utils/helpers"
 
 module Staticz
   class Server
-    def initialize
+    def initialize(port)
+      @port = port
+
       Thin::Logging.silent = true
 
       app = Rack::Builder.new do
@@ -41,7 +43,7 @@ module Staticz
         end
       end
 
-      thin_server = Thin::Server.new '127.0.0.1', 3000
+      thin_server = Thin::Server.new '127.0.0.1', port
       thin_server.app = app
 
       build_manifest

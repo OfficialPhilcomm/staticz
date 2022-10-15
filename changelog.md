@@ -1,4 +1,5 @@
 # 1.0.12
+- Added port argument to `staticz server` command, use `staticz server --help` for more information
 - Improved command system allowing for better printouts
 
 # 1.0.11
