@@ -1,11 +1,3 @@
-def development?
-  Staticz::Settings.development?
-end
-
-def production?
-  Staticz::Settings.production?
-end
-
 def render(component, locals: {}, &block)
   engine = ::Haml::Engine.new(File.read("src/#{component}.haml"))
 
