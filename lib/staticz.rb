@@ -1,44 +1,26 @@
-require_relative "template"
-require_relative "server"
-require_relative "builder"
-require_relative "settings"
-require_relative "utils/colors"
-require_relative "utils/helpers"
+require "tty-option"
+require_relative "commands/base_command"
+require_relative "commands/new_command"
+require_relative "commands/server_command"
+require_relative "commands/manifest_command"
+require_relative "commands/build_command"
 
 module Staticz
   def self.init
-    usage = [
-      "Usage: staticz <mode>",
-      "",
-      "  new [name]",
-      "  server",
-      "  manifest",
-      "  build"
-    ].join("\n")
-
-    case ARGV[0]
-    when 'new'
-      if ARGV[1]
-        Staticz::Template.new(ARGV[1])
-      else
-        puts usage
-      end
-    when 'server'
-      Staticz::Settings.development!
-      Staticz::Server.new
-    when 'manifest'
-      Staticz::Settings.development!
-
-      load "#{Dir.pwd}/manifest.rb"
-      Staticz::Modules::LibLoader.load_files
-      Staticz::Manifest.instance.create_link_functions
-
-      Staticz::Manifest.instance.print
-    when 'build'
-      Staticz::Settings.production!
-      Staticz::Builder.new
+    cmd, args = case ARGV[0]
+    when "new"
+      [Staticz::NewCommand.new, ARGV[1..]]
+    when "server"
+      [Staticz::ServerCommand.new, ARGV[1..]]
+    when "manifest"
+      [Staticz::ManifestCommand.new, ARGV[1..]]
+    when "build"
+      [Staticz::BuildCommand.new, ARGV[1..]]
     else
-      puts usage
+      [Staticz::BaseCommand.new, ARGV]
     end
+
+    cmd.parse args
+    cmd.run
   end
 end

@@ -1,3 +1,5 @@
+require "fileutils"
+
 module Staticz
   class Template
     def initialize(name)

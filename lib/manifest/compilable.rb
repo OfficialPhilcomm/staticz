@@ -1,4 +1,5 @@
 require "io/console"
+require_relative "../utils/colors"
 
 module Staticz
   module Compilable

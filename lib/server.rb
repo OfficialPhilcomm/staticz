@@ -1,9 +1,10 @@
 require "thin"
 require "listen"
 require "io/console"
-
 require_relative "manifest/manifest"
 require_relative "modules/reload"
+require_relative "builder"
+require_relative "utils/helpers"
 
 module Staticz
   class Server

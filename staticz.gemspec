@@ -26,4 +26,5 @@ Gem::Specification.new do |s|
   s.add_dependency "sassc", ["~> 2.4"]
   s.add_dependency "coffee-script", ["~> 2.4"]
   s.add_dependency "babel-transpiler", ["~> 0.7"]
+  s.add_dependency "tty-option", ["~> 0.2"]
 end
