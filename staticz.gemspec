@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'staticz'
-  s.version = '1.0.12'
+  s.version = '1.0.13'
   s.platform = Gem::Platform::RUBY
   s.required_ruby_version = ">= 3.1.0"
   s.summary = 'Static website compiler'
