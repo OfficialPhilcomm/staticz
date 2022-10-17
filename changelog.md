@@ -1,3 +1,6 @@
+# 1.0.13
+- Fixed CSSBundle crash when using build command
+
 # 1.0.12
 - Added port argument to `staticz server` command, use `staticz server --help` for more information
 - Added environment argument to `staticz server|build` commands, use `staticz server|build --help` for more information

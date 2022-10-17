@@ -98,7 +98,7 @@ module Staticz
     private
 
     def generate_text
-      if @compilable.is_a? Staticz::JSBundle
+      if @compilable.is_a?(Staticz::JSBundle) || @compilable.is_a?(Staticz::CSSBundle)
         @compilable.name
       else
         "#{@compilable.source_path} -> #{@compilable.build_path}"
