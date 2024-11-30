@@ -1,3 +1,6 @@
+# 1.0.14
+- Fixed a regex bug happening with ruby > `3.1.1`
+
 # 1.0.13
 - Fixed CSSBundle crash when using build command
 
