@@ -1,3 +1,6 @@
+# 1.0.15
+- Allow `sub` without content
+
 # 1.0.14
 - Fixed a regex bug happening with ruby > `3.1.1`
 
