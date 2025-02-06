@@ -28,7 +28,7 @@ RSpec.describe Staticz::Compilable::Haml do
         end
 
         it "generates correct path helper" do
-          expect(index_path).to eq("index.html")
+          expect(index_path).to eq("/index.html")
         end
       end
     end
@@ -73,7 +73,7 @@ RSpec.describe Staticz::Compilable::Haml do
         end
 
         it "generates correct path helper" do
-          expect(test_folder_index_path).to eq("test_folder/index.html")
+          expect(test_folder_index_path).to eq("/test_folder/index.html")
         end
       end
     end

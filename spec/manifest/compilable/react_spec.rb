@@ -28,7 +28,7 @@ RSpec.describe Staticz::Compilable::React do
         end
 
         it "generates correct path helper" do
-          expect(like_path).to eq("like.js")
+          expect(like_path).to eq("/like.js")
         end
       end
     end
@@ -73,7 +73,7 @@ RSpec.describe Staticz::Compilable::React do
         end
 
         it "generates correct path helper" do
-          expect(components_like_path).to eq("components/like.js")
+          expect(components_like_path).to eq("/components/like.js")
         end
       end
     end
