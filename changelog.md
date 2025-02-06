@@ -1,3 +1,7 @@
+# 1.1.0
+- Improved template system, allowing for different variants of templates. The old default template is now `layout`, and newly introduced is `default`.
+- Fixed placeholder for `name` parameter description on `new` subcommand
+
 # 1.0.14
 - Fixed a regex bug happening with ruby > `3.1.1`
 
