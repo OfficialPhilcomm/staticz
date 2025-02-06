@@ -14,7 +14,7 @@ module Staticz
 
     argument :name do
       required
-      desc "testies"
+      desc "The name to give the app. Decides how the folder is named"
     end
 
     flag :help do
