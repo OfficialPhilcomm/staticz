@@ -4,8 +4,8 @@ require_relative "compilable/haml"
 require_relative "compilable/cs"
 require_relative "compilable/js"
 require_relative "compilable/react"
-require_relative "compilable/sass"
-require_relative "compilable/scss"
+require_relative "compilable/sassc"
+require_relative "compilable/scssc"
 require_relative "compilable/simple_file"
 require_relative "js_bundle"
 require_relative "css_bundle"
@@ -32,11 +32,11 @@ module Staticz
     end
 
     def sass(name)
-      elements.push(Staticz::Compilable::Sass.new(name))
+      elements.push(Staticz::Compilable::SassC.new(name))
     end
 
     def scss(name)
-      elements.push(Staticz::Compilable::Scss.new(name))
+      elements.push(Staticz::Compilable::ScssC.new(name))
     end
 
     def js(name)

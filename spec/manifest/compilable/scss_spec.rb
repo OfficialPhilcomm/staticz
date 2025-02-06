@@ -1,6 +1,6 @@
 require_relative "../../../lib/manifest/manifest"
 
-RSpec.describe Staticz::Compilable::Scss do
+RSpec.describe Staticz::Compilable::ScssC do
   context "generated from manifest" do
     context "on top level" do
       before do

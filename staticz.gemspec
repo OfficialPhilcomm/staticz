@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rack", ["2.2.10"]
   s.add_dependency "thin", ["1.8.2"]
   s.add_dependency "listen", ["~> 3.7"]
-  s.add_dependency "sassc", ["~> 2.4"]
+  s.add_dependency "sass-embedded", ["~> 1.83"]
   s.add_dependency "coffee-script", ["~> 2.4"]
   s.add_dependency "babel-transpiler", ["~> 0.7"]
   s.add_dependency "tty-option", ["~> 0.2"]
