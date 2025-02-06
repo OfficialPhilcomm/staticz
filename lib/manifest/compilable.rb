@@ -64,6 +64,7 @@ module Staticz
           link_path
         end
       end
+      Manifest.instance.functions << path_method_name
     end
 
     def print(indentation, *args)

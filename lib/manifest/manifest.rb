@@ -14,10 +14,11 @@ module Staticz
   class Manifest
     include Singleton
 
-    attr_reader :elements
+    attr_reader :elements, :functions
 
     def initialize
       @elements = []
+      @functions = []
     end
 
     def sub(name, &block)
@@ -97,6 +98,12 @@ module Staticz
 
     def define(block)
       elements.clear
+
+      functions.each do |function|
+        Object.send(:undef_method, function)
+      end
+      functions.clear
+
       instance_eval(&block)
     end
 

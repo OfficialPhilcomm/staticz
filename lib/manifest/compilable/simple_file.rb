@@ -20,6 +20,8 @@ module Staticz
       def create_link_function
         link_path = "/#{name}"
         Object.send(:define_method, path_method_name) { link_path }
+
+        Manifest.instance.functions << path_method_name
       end
 
       def initialize(name)

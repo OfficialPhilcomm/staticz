@@ -69,6 +69,8 @@ module Staticz
       Object.send(:define_method, path_method_name) do
         link_path
       end
+
+      Manifest.instance.functions << path_method_name
     end
 
     def valid?
