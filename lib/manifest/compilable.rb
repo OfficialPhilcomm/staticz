@@ -46,6 +46,10 @@ module Staticz
       errors.empty?
     end
 
+    def warnings
+      []
+    end
+
     def errors
       errors = []
 
@@ -70,7 +74,11 @@ module Staticz
 
     def print(indentation, *args)
       valid_symbol = if valid?
-        Colors.in_green("✔")
+        if warnings.any?
+          Colors.in_yellow("⚠")
+        else
+          Colors.in_green("✔")
+        end
       else
         Colors.in_red("✘")
       end
@@ -87,6 +95,12 @@ module Staticz
         multiline_errors = full_error.scan(/.{1,#{line_width}}/)
         multiline_errors.each do |error|
           puts "#{" " * (indentation * 3)}   #{Colors.in_red(error)}"
+        end
+      end
+
+      warnings.each do |warning|
+        warning.lines.each do |line|
+          puts "#{" " * (indentation * 3)}   #{line}"
         end
       end
     end

@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
   s.add_dependency "babel-transpiler", ["~> 0.7"]
   s.add_dependency "tty-option", ["~> 0.2"]
   s.add_dependency "tty-spinner", ["0.9"]
+  s.add_dependency "pastel", ["~> 0.8.0"]
 end

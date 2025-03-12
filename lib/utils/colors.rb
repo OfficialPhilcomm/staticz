@@ -3,6 +3,10 @@ class Colors
     "\e[31m#{text}\e[0m"
   end
 
+  def self.in_yellow(text)
+    "\e[33m#{text}\e[0m"
+  end
+
   def self.in_green(text)
     "\e[32m#{text}\e[0m"
   end
