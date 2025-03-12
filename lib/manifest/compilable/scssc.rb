@@ -27,21 +27,23 @@ module Staticz
       end
 
       def render
-        Sass.compile(source_path, style: :compressed).css
+        Sass.compile(source_path, style: :compressed, logger: Sass::Logger.silent).css
       end
 
       def errors
-        errors = super
+        @_errors_cache ||= begin
+          errors = super
 
-        if exists?
-          begin
-            Sass.compile(source_path, style: :compressed).css
-          rescue => e
-            errors << e.message
+          if exists?
+            begin
+              Sass.compile(source_path, style: :compressed, logger: Sass::Logger.silent).css
+            rescue => e
+              errors << e.message
+            end
           end
-        end
 
-        errors
+          errors
+        end
       end
     end
   end
