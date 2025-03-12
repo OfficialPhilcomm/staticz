@@ -26,8 +26,18 @@ module Staticz
       desc "Print this page"
     end
 
+    flag :version do
+      short "-v"
+      long "--version"
+      desc "Print the version"
+    end
+
     def run
-      print help
+      if params[:version]
+        puts Staticz::VERSION
+      else
+        puts help
+      end
     end
   end
 end
