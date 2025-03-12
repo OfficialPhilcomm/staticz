@@ -91,8 +91,7 @@ module Staticz
         end
         .join(", ")
 
-      $stdout.clear_screen
-      puts "#{file_names} changed, rebuilding..."
+      puts "\n#{file_names} changed, rebuilding...\n\n"
       build_manifest
       puts "Rebuilding successful"
     end
