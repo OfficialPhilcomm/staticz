@@ -39,7 +39,7 @@ module Staticz
     end
 
     def path_method_name
-      "#{path.gsub(/[\s.\/-]+/, "_").downcase}_path"
+      "#{path.gsub(/[^A-Za-z0-9]+/, "_").downcase}_path"
     end
 
     def valid?
@@ -57,6 +57,7 @@ module Staticz
     def create_link_function
       link_path = "/#{name}.#{build_file_ending}"
       shortened_link_path = "/#{name}"
+
       Object.send(:define_method, path_method_name) do |shorten: false|
         if shorten
           shortened_link_path
