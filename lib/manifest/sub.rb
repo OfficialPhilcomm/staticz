@@ -10,7 +10,7 @@ module Staticz
     def sub(name, &block)
       s = Staticz::Sub.new("#{@name}/#{name}")
       elements.push(s)
-      s.instance_eval(&block)
+      s.instance_eval(&block) if block_given?
     end
 
     def haml(name, &block)

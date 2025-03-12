@@ -5,6 +5,9 @@
 - Fixed placeholder for `name` parameter description on `new` subcommand
 - Fixed multiple issues with path names not being generated correctly, for example spaces weren't converted to underscores
 
+# 1.0.15
+- Allow `sub` without content
+
 # 1.0.14
 - Fixed a regex bug happening with ruby > `3.1.1`
 
