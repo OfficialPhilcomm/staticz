@@ -1,9 +1,9 @@
-require "sassc"
+require "sass-embedded"
 require_relative "../compilable"
 
 module Staticz
   module Compilable
-    class Scss
+    class ScssC
       include Compilable
 
       attr_reader :name
@@ -27,7 +27,7 @@ module Staticz
       end
 
       def render
-        ::SassC::Engine.new(File.read(source_path), syntax: :scss, style: :compressed).render
+        Sass.compile(source_path, style: :compressed).css
       end
 
       def errors
@@ -35,8 +35,7 @@ module Staticz
 
         if exists?
           begin
-            engine = ::SassC::Engine.new(File.read(source_path), syntax: :scss)
-            engine.render
+            Sass.compile(source_path, style: :compressed).css
           rescue => e
             errors << e.message
           end

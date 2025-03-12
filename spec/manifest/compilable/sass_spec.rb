@@ -1,6 +1,6 @@
 require_relative "../../../lib/manifest/manifest"
 
-RSpec.describe Staticz::Compilable::Sass do
+RSpec.describe Staticz::Compilable::SassC do
   context "generated from manifest" do
     context "on top level" do
       before do
@@ -28,7 +28,7 @@ RSpec.describe Staticz::Compilable::Sass do
         end
 
         it "generates correct path helper" do
-          expect(styles_path).to eq("styles.css")
+          expect(styles_path).to eq("/styles.css")
         end
       end
     end
@@ -73,7 +73,7 @@ RSpec.describe Staticz::Compilable::Sass do
         end
 
         it "generates correct path helper" do
-          expect(css_styles_path).to eq("css/styles.css")
+          expect(css_styles_path).to eq("/css/styles.css")
         end
       end
     end

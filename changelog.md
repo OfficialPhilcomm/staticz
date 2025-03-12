@@ -1,3 +1,10 @@
+# 1.1.0
+- Added `--version` to base command
+- Replaced deprecated `sassc` with `sass-embedded` gem
+- Improved template system, allowing for different variants of templates. The old default template is now `layout`, and newly introduced is `default`.
+- Fixed placeholder for `name` parameter description on `new` subcommand
+- Fixed multiple issues with path names not being generated correctly, for example spaces weren't converted to underscores
+
 # 1.0.15
 - Allow `sub` without content
 

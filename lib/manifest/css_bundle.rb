@@ -17,11 +17,11 @@ module Staticz
     end
 
     def sass(name, &block)
-      elements.push(Staticz::Compilable::Sass.new(generate_location_path(name)))
+      elements.push(Staticz::Compilable::SassC.new(generate_location_path(name)))
     end
 
     def scss(name, &block)
-      elements.push(Staticz::Compilable::Scss.new(generate_location_path(name)))
+      elements.push(Staticz::Compilable::ScssC.new(generate_location_path(name)))
     end
 
     def generate_location_path(name)
@@ -69,6 +69,8 @@ module Staticz
       Object.send(:define_method, path_method_name) do
         link_path
       end
+
+      Manifest.instance.functions << path_method_name
     end
 
     def valid?

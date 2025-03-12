@@ -1,5 +1,6 @@
 require "tty-option"
-require_relative "../template"
+require_relative "../templates/default"
+require_relative "../templates/layout"
 
 module Staticz
   class NewCommand
@@ -14,7 +15,7 @@ module Staticz
 
     argument :name do
       required
-      desc "testies"
+      desc "The name to give the app. Decides how the folder is named"
     end
 
     flag :help do
@@ -23,19 +24,29 @@ module Staticz
       desc "Print this page"
     end
 
+    option :template do
+      short "-t"
+      long "--template name"
+      desc "The template to use"
+
+      default "default"
+      permit %w[default layout]
+    end
+
     def run
       if params[:help]
         print help
         exit 1
       end
 
-      if !params[:name]
-        puts "Name missing"
-        print help
+      if params.errors.any?
+        puts params.errors.summary
         exit 1
       end
 
-      Staticz::Template.new(params[:name])
+      Object
+        .const_get("Staticz::Templates::#{params[:template].capitalize}")
+        .build(params[:name])
     end
   end
 end
