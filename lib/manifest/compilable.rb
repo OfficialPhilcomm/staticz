@@ -88,7 +88,7 @@ module Staticz
 
       puts compilable_string
 
-      _height, width = IO.console.winsize
+      _height, width = IO.console&.winsize || [0, 20]
 
       errors.each do |full_error|
         line_width = width - (indentation * 3) - 3
