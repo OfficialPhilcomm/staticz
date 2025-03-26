@@ -18,11 +18,11 @@ module Staticz
     end
 
     def sass(name, &block)
-      elements.push(Staticz::Compilable::SassC.new("#{@name}/#{name}"))
+      elements.push(Staticz::Compilable::Scss.new("#{@name}/#{name}", type: :sass))
     end
 
     def scss(name, &block)
-      elements.push(Staticz::Compilable::ScssC.new("#{@name}/#{name}"))
+      elements.push(Staticz::Compilable::Scss.new("#{@name}/#{name}", type: :scss))
     end
 
     def js(name, &block)

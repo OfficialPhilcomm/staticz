@@ -4,16 +4,27 @@ require_relative "../compilable"
 
 module Staticz
   module Compilable
-    class SassC
+    class Scss
       include Compilable
 
       attr_reader :name
 
-      compile "sass", "css", "Sass"
-
-      def initialize(name)
+      def initialize(name, type:)
         @name = name
         @warnings = []
+        @type = type
+      end
+
+      def source_file_ending
+        @type
+      end
+
+      def build_file_ending
+        "css"
+      end
+
+      def file_type_name
+        @type.capitalize
       end
 
       def build(listener_class: nil)
