@@ -1,3 +1,11 @@
+# 1.1.2
+- Fixed winsize error on some docker images
+
+# 1.1.1
+- Added custom error handler for `sass-embedded`
+- Added `.gitignore` to templates
+- Removed screen clearing, as it didn't work properly on big manifests
+
 # 1.1.0
 - Added `--version` to base command
 - Replaced deprecated `sassc` with `sass-embedded` gem
