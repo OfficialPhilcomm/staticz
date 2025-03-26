@@ -18,12 +18,6 @@ module Staticz
       desc "The name to give the app. Decides how the folder is named"
     end
 
-    flag :help do
-      short "-h"
-      long "--help"
-      desc "Print this page"
-    end
-
     option :template do
       short "-t"
       long "--template name"
@@ -31,6 +25,17 @@ module Staticz
 
       default "default"
       permit %w[default layout]
+    end
+
+    flag :with_gitignore do
+      long "--with-gitignore"
+      desc "Add basic .gitignore file"
+    end
+
+    flag :help do
+      short "-h"
+      long "--help"
+      desc "Print this page"
     end
 
     def run
@@ -46,6 +51,13 @@ module Staticz
 
       Object
         .const_get("Staticz::Templates::#{params[:template].capitalize}")
+        .tap do |template|
+          if params[:with_gitignore]
+            template.file ".gitignore", <<~GITIGNORE
+              build/
+            GITIGNORE
+          end
+        end
         .build(params[:name])
     end
   end

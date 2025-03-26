@@ -48,9 +48,5 @@ module Staticz::Templates
         padding: 0
         margin: 0
     SASS
-
-    file ".gitignore", <<~GITIGNORE
-      build/
-    GITIGNORE
   end
 end
