@@ -1,3 +1,7 @@
+# 1.1.3
+- Added flag `--with-gitignore` to `new` command
+- Improved sass and scss compiling, combining them into one class
+
 # 1.1.2
 - Fixed winsize error on some docker images
 
