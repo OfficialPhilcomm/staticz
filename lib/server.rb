@@ -36,7 +36,7 @@ module Staticz
         map "/" do
           if Staticz::Manifest.instance.index_missing?
             use Rack::Static,
-              urls: {"/" => "getting_started.html"},
+              urls: {"/" => "get_started.html"},
               root: File.join(File.dirname(__FILE__), "templates", "files")
 
             use Rack::Static,

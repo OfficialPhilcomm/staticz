@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='Get started with staticz' name='description'>
+<meta content='website, staticz' name='keywords'>
+<meta content='staticz.dev' property='og:site_name'>
+<meta content='Get started with staticz' property='og:title'>
+<meta content='Get started with staticz' property='og:description'>
+<meta content='website' property='og:type'>
+<meta content='https://staticz.dev/' property='og:url'>
+<meta content='Get started with staticz' property='og:title'>
+<link href='/staticz_logo' rel='icon' type='image/x-icon'>
+<link href='https://fonts.googleapis.com' rel='preconnect'>
+<link crossorigin href='https://fonts.gstatic.com' rel='preconnect'>
+<link href='https://fonts.googleapis.com/css2?family=Jua&amp;display=swap' rel='stylesheet'>
+<title>Get started with staticz</title>
+<script src="reload.js" defer></script>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    padding: 0;
+    margin: 0;
+  }
+
+  body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 0.5rem;
+    padding-bottom: 2rem;
+    font-family: sans-serif;
+  }
+
+  nav {
+    width: 100%;
+    padding: 0.125rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 1rem;
+    color: rgb(51, 65, 85);
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: 150ms color, 150ms background-color;
+  }
+  .nav-link:hover {
+    color: rgb(91, 0, 255);
+    background-color: rgb(241, 245, 249);
+  }
+
+  header {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-logo {
+    width: 16rem;
+    max-width: 100%;
+  }
+
+  .header-name {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "Jua";
+    background: -webkit-linear-gradient(180deg, rgb(255, 251, 69) 0%, rgb(240, 69, 229) 59%, rgb(91, 0, 255) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  code {
+    padding: 0.2rem 0.4rem;
+    background-color: rgb(226, 232, 240);
+    border-radius: 0.25rem;
+  }
+
+  .main-heading {
+    text-align: center;
+  }
+
+  .main-staticz {
+    font-weight: bold;
+    font-family: "Jua";
+    background: -webkit-linear-gradient(180deg, rgb(255, 251, 69) 0%, rgb(240, 69, 229) 59%, rgb(91, 0, 255) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .main-list {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+  }
+
+  .main-list-number {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-family: "Jua";
+    background-color: rgb(241, 245, 249);
+    border-radius: 2rem;
+  }
+
+  .main-list-text {
+    max-width: 16rem;
+  }
+
+  .main-list-text-link {
+    color: rgb(91, 0, 255);
+    font-weight: bold;
+    text-decoration: none;
+    transition: 150ms color;
+  }
+  .main-list-text-link:hover {
+    color: rgb(240, 69, 229);
+  }
+</style>
+</head>
+<body>
+<nav>
+<a class='nav-link' href='https://github.com/OfficialPhilcomm/staticz?tab=readme-ov-file#staticz' target='_blank'>Docs</a>
+<a class='nav-link' href='https://github.com/OfficialPhilcomm/staticz' target='_blank'>GitHub</a>
+<a class='nav-link' href='https://rubygems.org/gems/staticz' target='_blank'>RubyGems</a>
+</nav>
+<header>
+<img class='header-logo' src='/staticz_logo'>
+<div class='header-name'>staticz</div>
+</header>
+<main>
+<h1 class='main-heading'>
+Thank you for choosing
+<span class='main-staticz'>staticz</span>
+🎉
+</h1>
+<h2 class='main-heading'>First Steps</h2>
+<div class='main-list'>
+<div class='main-list-number'>1</div>
+<div class='main-list-text'>
+First, add an index file by adding
+<code>haml :index</code>
+to
+<code>manifest.rb</code>
+.
+Then create the file `src/index.haml`.
+This will be your index file and replaces this page.
+Careful, this page is only displayed if no index exists!
+</div>
+<div class='main-list-number'>2</div>
+<div class='main-list-text'>
+Add a stylesheet by adding
+<code>sass :style</code>
+to the manifest.
+Now create the file
+<code>src/style.sass</code>
+. As the last step, add
+<br>
+<code>= stylesheet style_path</code>
+<br>
+to your index's head tag.
+Et voilà! You have added a stylesheet.
+</div>
+<div class='main-list-number'>3</div>
+<div class='main-list-text'>
+There is many more things you can do now.
+To get a better overview, check out the
+<a class='main-list-text-link' href='https://github.com/OfficialPhilcomm/staticz?tab=readme-ov-file#staticz' target='_blank'>
+docs!
+</a>
+There you'll find everything you need to kickstart your static website development with
+<span class='main-staticz'>staticz</span>
+!
+</div>
+</div>
+</main>
+</body>
+</html>
