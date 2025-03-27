@@ -1,10 +1,10 @@
 require_relative "template"
 
 module Staticz::Templates
-  class Default
+  class Simple
     extend Staticz::Template
 
-    folders "src", "src/css"
+    folders "src", "src/css", "src/img"
 
     file "manifest.rb", <<~RUBY
       Staticz::Manifest.define do
