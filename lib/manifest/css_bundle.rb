@@ -17,11 +17,11 @@ module Staticz
     end
 
     def sass(name, &block)
-      elements.push(Staticz::Compilable::SassC.new(generate_location_path(name)))
+      elements.push(Staticz::Compilable::Scss.new(generate_location_path(name), type: :sass))
     end
 
     def scss(name, &block)
-      elements.push(Staticz::Compilable::ScssC.new(generate_location_path(name)))
+      elements.push(Staticz::Compilable::Scss.new(generate_location_path(name), type: :scss))
     end
 
     def generate_location_path(name)
