@@ -4,7 +4,7 @@ module Staticz::Templates
   class Simple
     extend Staticz::Template
 
-    folders "src", "src/css", "src/img"
+    folders "src", "src/css"
 
     file "manifest.rb", <<~RUBY
       Staticz::Manifest.define do
