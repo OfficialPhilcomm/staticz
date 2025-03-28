@@ -40,7 +40,11 @@ module Staticz
               root: File.join(File.dirname(__FILE__), "templates", "files")
 
             use Rack::Static,
-              urls: {"/staticz_logo" => "logo.jpeg"},
+              urls: {"/logo.png" => "logo.png"},
+              root: File.join(File.dirname(__FILE__), "templates", "files")
+
+            use Rack::Static,
+              urls: {"/bolt.png" => "bolt.png"},
               root: File.join(File.dirname(__FILE__), "templates", "files")
           else
             use Rack::Static, urls: {"/" => "build/index.html"}
