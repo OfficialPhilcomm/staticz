@@ -1,5 +1,6 @@
 require "tty-option"
-require_relative "../templates/default"
+require_relative "../templates/clean"
+require_relative "../templates/simple"
 require_relative "../templates/layout"
 
 module Staticz
@@ -23,8 +24,8 @@ module Staticz
       long "--template name"
       desc "The template to use"
 
-      default "default"
-      permit %w[default layout]
+      default "clean"
+      permit %w[clean simple layout]
     end
 
     flag :with_gitignore do

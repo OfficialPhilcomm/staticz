@@ -112,5 +112,11 @@ module Staticz
         e.print(0)
       end
     end
+
+    def index_missing?
+      elements.find do |e|
+        e.build_path == "build/index.html"
+      end.nil?
+    end
   end
 end

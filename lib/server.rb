@@ -32,8 +32,23 @@ module Staticz
             ]
           }
         end
+
         map "/" do
-          use Rack::Static, urls: {"/" => "build/index.html"}
+          if Staticz::Manifest.instance.index_missing?
+            use Rack::Static,
+              urls: {"/" => "get_started.html"},
+              root: File.join(File.dirname(__FILE__), "templates", "files")
+
+            use Rack::Static,
+              urls: {"/logo.png" => "logo.png"},
+              root: File.join(File.dirname(__FILE__), "templates", "files")
+
+            use Rack::Static,
+              urls: {"/bolt.png" => "bolt.png"},
+              root: File.join(File.dirname(__FILE__), "templates", "files")
+          else
+            use Rack::Static, urls: {"/" => "build/index.html"}
+          end
 
           Staticz::Server.all_haml(Staticz::Manifest.instance.elements).each do |e|
             use Rack::Static, urls: {"/#{e.name}" => e.build_path}

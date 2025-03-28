@@ -1,7 +1,7 @@
 require_relative "template"
 
 module Staticz::Templates
-  class Default
+  class Simple
     extend Staticz::Template
 
     folders "src", "src/css"
