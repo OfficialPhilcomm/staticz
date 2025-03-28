@@ -10,11 +10,11 @@ module Staticz
       def self.build_reload_js
         <<~JS
           var hash = null;
-  
+
           function checkForChanges() {
             console.log("Check for file changes");
             var response = new XMLHttpRequest();
-            response.open("GET", "api/hash", true);
+            response.open("GET", "/api/hash", true);
             response.onload = function() {
               if (response.status === 200) {
                 if (!hash) {

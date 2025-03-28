@@ -59,5 +59,5 @@ def react_component(name, css_class = nil)
 end
 
 def reload_js
-  "<script src=\"reload.js\" defer></script>" if Staticz::Settings.development?
+  "<script src=\"/reload.js\" defer></script>" if Staticz::Settings.development?
 end
