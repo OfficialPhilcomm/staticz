@@ -1,4 +1,4 @@
-[Staticz Banner](staticz-banner.png)
+![Staticz Banner](staticz-banner.png)
 
 # Staticz
 Ruby tool allowing you to write a small website project in `haml`, `sass`, `scss` and `js`, and compile everything into static files before uploading them to a static server. This project takes a lot of inspiration from Ruby on Rails.
