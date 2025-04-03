@@ -1,6 +1,8 @@
 # 1.1.3
 - Added flag `--with-gitignore` to `new` command
+- Added new `clean` template
 - Improved sass and scss compiling, combining them into one class
+- Improved new user experience
 
 # 1.1.2
 - Fixed winsize error on some docker images
