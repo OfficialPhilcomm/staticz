@@ -68,5 +68,39 @@ RSpec.describe "manifest" do
         end
       end
     end
+
+    describe "index_missing?" do
+      context "with index haml" do
+        before do
+          Staticz::Manifest.define do
+            haml :index
+
+            sub :foo do
+              haml :some_other_haml
+            end
+          end
+        end
+
+        it "returns true" do
+          expect(Staticz::Manifest.instance.index_missing?).to be_falsy
+        end
+      end
+
+      context "without index haml" do
+        before do
+          Staticz::Manifest.define do
+            haml :some_haml
+
+            sub :foo do
+              haml :some_other_haml
+            end
+          end
+        end
+
+        it "returns true" do
+          expect(Staticz::Manifest.instance.index_missing?).to be_truthy
+        end
+      end
+    end
   end
 end

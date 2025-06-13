@@ -1,3 +1,6 @@
+# 1.1.4
+- Fixed an issue where `index_missing?` was crashing if no index was available and sub was present
+
 # 1.1.3
 - Added flag `--with-gitignore` to `new` command
 - Added new `clean` template

@@ -6,7 +6,7 @@ require_relative "commands/manifest_command"
 require_relative "commands/build_command"
 
 module Staticz
-  VERSION = "1.1.3"
+  VERSION = "1.1.4"
 
   def self.init
     cmd, args = case ARGV[0]

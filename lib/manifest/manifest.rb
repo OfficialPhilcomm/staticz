@@ -114,9 +114,12 @@ module Staticz
     end
 
     def index_missing?
-      elements.find do |e|
-        e.build_path == "build/index.html"
-      end.nil?
+      elements
+        .filter do |e|
+          !e.is_a? Staticz::Sub
+        end.find do |e|
+          e.build_path == "build/index.html"
+        end.nil?
     end
   end
 end
