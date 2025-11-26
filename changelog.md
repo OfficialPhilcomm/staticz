@@ -1,3 +1,6 @@
+# 1.1.5
+- Added slim support
+
 # 1.1.4
 - Fixed an issue where `index_missing?` was crashing if no index was available and sub was present
 

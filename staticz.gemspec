@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'staticz'
-  s.version = '1.1.4'
+  s.version = '1.1.5'
   s.platform = Gem::Platform::RUBY
   s.required_ruby_version = ">= 3.1.0"
   s.summary = 'Static website compiler'
@@ -30,4 +30,5 @@ Gem::Specification.new do |s|
   s.add_dependency "tty-option", ["~> 0.2"]
   s.add_dependency "tty-spinner", ["0.9"]
   s.add_dependency "pastel", ["~> 0.8.0"]
+  s.add_dependency "slim", ["~> 5.2"]
 end

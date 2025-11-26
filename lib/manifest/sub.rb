@@ -17,6 +17,10 @@ module Staticz
       elements.push(Staticz::Compilable::Haml.new("#{@name}/#{name}"))
     end
 
+    def slim(name, &block)
+      elements.push(Staticz::Compilable::Slim.new("#{@name}/#{name}"))
+    end
+
     def sass(name, &block)
       elements.push(Staticz::Compilable::Scss.new("#{@name}/#{name}", type: :sass))
     end

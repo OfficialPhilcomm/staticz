@@ -1,6 +1,7 @@
 require "singleton"
 require_relative "sub"
 require_relative "compilable/haml"
+require_relative "compilable/slim"
 require_relative "compilable/cs"
 require_relative "compilable/js"
 require_relative "compilable/react"
@@ -29,6 +30,10 @@ module Staticz
 
     def haml(name)
       elements.push(Staticz::Compilable::Haml.new(name))
+    end
+
+    def slim(name)
+      elements.push(Staticz::Compilable::Slim.new(name))
     end
 
     def sass(name)

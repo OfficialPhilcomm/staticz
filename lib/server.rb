@@ -50,7 +50,7 @@ module Staticz
             use Rack::Static, urls: {"/" => "build/index.html"}
           end
 
-          Staticz::Server.all_haml(Staticz::Manifest.instance.elements).each do |e|
+          Staticz::Server.all_templates(Staticz::Manifest.instance.elements).each do |e|
             use Rack::Static, urls: {"/#{e.name}" => e.build_path}
           end
 
@@ -68,12 +68,14 @@ module Staticz
       thin_server.start
     end
 
-    def self.all_haml(elements)
+    def self.all_templates(elements)
       elements.map do |e|
         if e.is_a? Staticz::Compilable::Haml
           e
+        elsif e.is_a? Staticz::Compilable::Slim
+          e
         elsif e.is_a? Staticz::Sub
-          all_haml(e.elements)
+          all_templates(e.elements)
         end
       end.flatten.select do |e|
         e
