@@ -1,3 +1,6 @@
+# 1.1.6
+- Added `render` support for slim
+
 # 1.1.5
 - Added slim support
 
