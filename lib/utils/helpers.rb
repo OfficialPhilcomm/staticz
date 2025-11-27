@@ -1,10 +1,18 @@
 def render(component, locals: {}, &block)
-  engine = ::Haml::Engine.new(File.read("src/#{component}.haml"))
+  if File.exist? "src/#{component}.haml"
+    engine = ::Haml::Engine.new(File.read("src/#{component}.haml"))
 
-  if block
-    engine.render(Object.new, locals, &block)
-  else
-    engine.render(Object.new, locals)
+    if block
+      engine.render(Object.new, locals, &block)
+    else
+      engine.render(Object.new, locals)
+    end
+  elsif File.exist? "src/#{component}.slim"
+    if block
+      Slim::Template.new("src/#{component}.slim").render(Object.new, &block)
+    else
+      Slim::Template.new("src/#{component}.slim").render
+    end
   end
 end
 
