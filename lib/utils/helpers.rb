@@ -9,9 +9,9 @@ def render(component, locals: {}, &block)
     end
   elsif File.exist? "src/#{component}.slim"
     if block
-      Slim::Template.new("src/#{component}.slim").render(Object.new, &block)
+      Slim::Template.new("src/#{component}.slim").render(Object.new, **locals, &block)
     else
-      Slim::Template.new("src/#{component}.slim").render
+      Slim::Template.new("src/#{component}.slim").render(Object.new, **locals)
     end
   end
 end

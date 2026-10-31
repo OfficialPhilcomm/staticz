@@ -1,3 +1,6 @@
+# 1.1.7
+- Added support for slim locals
+
 # 1.1.6
 - Added `render` support for slim
 
