@@ -1,3 +1,6 @@
+# 1.1.8
+- Update dependencies
+
 # 1.1.7
 - Added support for slim locals
 
